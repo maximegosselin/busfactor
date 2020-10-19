@@ -17,8 +17,11 @@
     "ramsey/uuid": "^3.0 || ^4.0"
   },
   "require-dev": {
+    "ext-memcached": "*",
+    "ext-mongodb": "*",
     "ext-pdo_sqlite": "*",
     "friendsofphp/php-cs-fixer": "^2",
+    "mongodb/mongodb": "^1.7",
     "phpstan/phpstan": "^0.12.0",
     "phpunit/phpunit": "^9",
     "squizlabs/php_codesniffer": "^3"

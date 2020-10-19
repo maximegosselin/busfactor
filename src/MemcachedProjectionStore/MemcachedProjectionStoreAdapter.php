@@ -17,7 +17,7 @@ class MemcachedProjectionStoreAdapter implements AdapterInterface
     /** @var callable */
     private $resolver;
 
-    private Memcached $memcached;
+    private ?Memcached $memcached = null;
 
     private string $namespace;
 
