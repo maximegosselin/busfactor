@@ -6,11 +6,9 @@ namespace BusFactor\ObjectSerializer;
 
 class TestMiddleware implements MiddlewareInterface
 {
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var Output */
-    private $output;
+    private Output $output;
 
     public function __construct(string $name, Output $output)
     {

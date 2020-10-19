@@ -13,8 +13,7 @@ use BusFactor\EventStore\EventStoreInterface;
 
 class PlayerRepository
 {
-    /** @var AggregateStoreInterface */
-    private $store;
+    private AggregateStoreInterface $store;
 
     public function __construct(EventStoreInterface $eventStore, EventBusInterface $eventBus)
     {

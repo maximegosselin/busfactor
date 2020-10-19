@@ -8,8 +8,7 @@ class TestEventSourcedAggregate implements EventSourcedAggregateInterface
 {
     use EventSourcedAggregateRootTrait;
 
-    /** @var string|null */
-    private $name;
+    private ?string $name = null;
 
     public static function getType(): string
     {

@@ -5,19 +5,17 @@ declare(strict_types=1);
 namespace BusFactor\Example\Aggregate;
 
 use BusFactor\EventSourcedAggregate\EventSourcedAggregateInterface;
+use BusFactor\EventSourcedAggregate\EventSourcedAggregateRootTrait;
 
 class Player implements EventSourcedAggregateInterface
 {
-    use \BusFactor\EventSourcedAggregate\EventSourcedAggregateRootTrait;
+    use EventSourcedAggregateRootTrait;
 
-    /** @var int */
-    private $number;
+    private int $number;
 
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var int */
-    private $points;
+    private int $points;
 
     public static function getType(): string
     {

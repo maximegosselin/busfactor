@@ -15,8 +15,7 @@ use PHPUnit\Framework\TestCase;
 
 class PdoEventStoreTest extends TestCase
 {
-    /** @var PdoInterface */
-    private $pdo;
+    private PdoInterface $pdo;
 
     public function setUp(): void
     {

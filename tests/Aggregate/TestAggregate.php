@@ -10,11 +10,9 @@ class TestAggregate implements AggregateInterface
         AggregateRootTrait::apply as aggregateRootTraitApply;
     }
 
-    /** @var TestAggregateEntity */
-    private $entity1;
+    private TestAggregateEntity $entity1;
 
-    /** @var TestAggregateEntity */
-    private $entity2;
+    private TestAggregateEntity $entity2;
 
     public static function getType(): string
     {

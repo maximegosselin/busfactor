@@ -6,6 +6,5 @@ namespace BusFactor\ObjectSerializer;
 
 class TestClass
 {
-    /** @var string */
-    private $foo = 'bar';
+    private string $foo = 'bar';
 }

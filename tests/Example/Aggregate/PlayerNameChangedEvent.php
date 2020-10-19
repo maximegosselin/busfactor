@@ -15,11 +15,9 @@ class PlayerNameChangedEvent implements StreamEventInterface
 
     public const REVISION = 1;
 
-    /** @var string */
-    private $previous;
+    private string $previous;
 
-    /** @var string */
-    private $new;
+    private string $new;
 
     public function __construct(string $previous, string $new)
     {

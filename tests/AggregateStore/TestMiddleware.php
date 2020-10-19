@@ -8,11 +8,9 @@ use BusFactor\Aggregate\AggregateInterface;
 
 class TestMiddleware implements MiddlewareInterface
 {
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var array */
-    private $output;
+    private array $output;
 
     public function __construct(string $name, array &$output)
     {

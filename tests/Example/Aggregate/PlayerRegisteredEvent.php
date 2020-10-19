@@ -15,11 +15,9 @@ class PlayerRegisteredEvent implements StreamEventInterface
 
     public const REVISION = 1;
 
-    /** @var int */
-    private $number;
+    private int $number;
 
-    /** @var string */
-    private $name;
+    private string $name;
 
     public function __construct(int $number, string $name)
     {

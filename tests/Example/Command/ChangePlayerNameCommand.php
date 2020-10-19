@@ -6,11 +6,9 @@ namespace BusFactor\Example\Command;
 
 class ChangePlayerNameCommand
 {
-    /** @var string */
-    private $id;
+    private string $id;
 
-    /** @var string */
-    private $name;
+    private string $name;
 
     public function __construct(string $id, string $name)
     {

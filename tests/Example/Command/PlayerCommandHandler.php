@@ -13,8 +13,7 @@ class PlayerCommandHandler implements CommandHandlerInterface
 {
     use CommandHandlerTrait;
 
-    /** @var PlayerRepository */
-    private $players;
+    private PlayerRepository $players;
 
     public function __construct(PlayerRepository $players)
     {

@@ -16,8 +16,7 @@ class PlayerListProjector implements EventHandlerInterface
 {
     use EventHandlerTrait;
 
-    /** @var ProjectionStoreInterface */
-    private $projections;
+    private ProjectionStoreInterface $projections;
 
     public function __construct(ProjectionStoreInterface $projections)
     {

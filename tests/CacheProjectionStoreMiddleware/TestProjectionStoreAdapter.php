@@ -11,8 +11,7 @@ use Generator;
 
 class TestProjectionStoreAdapter extends InMemoryProjectionStoreAdapter
 {
-    /** @var int */
-    private $hits = 0;
+    private int $hits = 0;
 
     public function reset(): void
     {

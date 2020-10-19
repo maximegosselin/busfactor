@@ -11,7 +11,7 @@ use BusFactor\EventStream\Envelope;
 class TestInspector implements InspectorInterface
 {
     /** @var Envelope[] */
-    private $inspectedEvents = [];
+    private array $inspectedEvents = [];
 
     public function getFilter(): Filter
     {

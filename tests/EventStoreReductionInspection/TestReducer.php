@@ -9,8 +9,7 @@ use BusFactor\EventStream\Envelope;
 
 class TestReducer implements ReductionInspectorInterface
 {
-    /** @var int */
-    private $eventCount = 0;
+    private int $eventCount = 0;
 
     public function getFilter(): Filter
     {

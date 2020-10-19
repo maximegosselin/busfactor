@@ -11,14 +11,11 @@ class TestEvent implements StreamEventInterface
 
     public const REVISION = 1;
 
-    /** @var string */
-    private $string;
+    private string $string;
 
-    /** @var int */
-    private $integer;
+    private int $integer;
 
-    /** @var array */
-    private $array;
+    private array $array;
 
     public function __construct(string $string, int $integer, array $array)
     {

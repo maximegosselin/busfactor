@@ -18,8 +18,7 @@ class StreamEnricherEventBusMiddlewareTest extends TestCase
     public function it_enriches_stream(): void
     {
         $mw = new class implements MiddlewareInterface {
-            /** @var Metadata */
-            public $metadata;
+            public ?Metadata $metadata = null;
 
             public function publish(Stream $stream, EventStreamPublisherInterface $next): void
             {

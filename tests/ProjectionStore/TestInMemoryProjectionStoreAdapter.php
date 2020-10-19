@@ -6,8 +6,7 @@ namespace BusFactor\ProjectionStore;
 
 class TestInMemoryProjectionStoreAdapter extends InMemoryProjectionStoreAdapter
 {
-    /** @var UnitOfWork|null */
-    private $unit;
+    private ?UnitOfWork $unit = null;
 
     public function commit(UnitOfWork $unit): void
     {

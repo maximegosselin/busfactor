@@ -11,7 +11,7 @@ class TestAggregateEntity
     }
 
     /** @var TestEvent[] */
-    private $appliedEvents = [];
+    private array $appliedEvents = [];
 
     public function action(): void
     {

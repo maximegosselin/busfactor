@@ -12,7 +12,7 @@ class TestEventHandler1 implements EventHandlerInterface
     use EventHandlerTrait;
 
     /** @var StreamEventInterface[] */
-    private $handledEvents = [];
+    private array $handledEvents = [];
 
     public static function getSubscribedEventClasses(): array
     {

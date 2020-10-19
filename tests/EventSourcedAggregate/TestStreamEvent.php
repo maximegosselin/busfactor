@@ -15,8 +15,7 @@ class TestStreamEvent implements StreamEventInterface
 
     public const REVISION = 1;
 
-    /** @var string */
-    private $name;
+    private string $name;
 
     public function __construct(string $name)
     {

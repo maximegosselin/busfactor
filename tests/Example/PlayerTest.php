@@ -27,8 +27,7 @@ class PlayerTest extends TestCase
 {
     use AssertionsTrait;
 
-    /** @var Scenario */
-    private $scenario;
+    private Scenario $scenario;
 
     public function setUp(): void
     {

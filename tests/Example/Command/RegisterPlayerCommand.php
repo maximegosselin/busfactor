@@ -6,14 +6,11 @@ namespace BusFactor\Example\Command;
 
 class RegisterPlayerCommand
 {
-    /** @var string */
-    private $id;
+    private string $id;
 
-    /** @var int */
-    private $number;
+    private int $number;
 
-    /** @var string */
-    private $name;
+    private string $name;
 
     public function __construct(string $id, int $number, string $name)
     {

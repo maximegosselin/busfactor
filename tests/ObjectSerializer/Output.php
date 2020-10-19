@@ -7,7 +7,7 @@ namespace BusFactor\ObjectSerializer;
 class Output
 {
     /** @var string[] */
-    private $messages = [];
+    private array $messages = [];
 
     public function write(string $message): void
     {

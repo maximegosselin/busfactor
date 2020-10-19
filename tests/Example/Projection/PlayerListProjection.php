@@ -11,8 +11,7 @@ class PlayerListProjection implements ProjectionInterface
     /** @var string */
     public const ID = __CLASS__;
 
-    /** @var array */
-    private $payload = [];
+    private array $payload = [];
 
     public function getId(): string
     {

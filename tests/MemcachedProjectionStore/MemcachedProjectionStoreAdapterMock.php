@@ -12,8 +12,7 @@ use Memcached;
 
 class MemcachedProjectionStoreAdapterMock extends MemcachedProjectionStoreAdapter
 {
-    /** @var InMemoryProjectionStoreAdapter */
-    private $adapter;
+    private InMemoryProjectionStoreAdapter $adapter;
 
     public function __construct(Memcached $memcached, string $namespace = 'projection-store')
     {
