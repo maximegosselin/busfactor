@@ -10,15 +10,15 @@ A comprehensive set of modern PHP components you can mix and match to implement 
 
 **Domain-centric** — Implement rich domain logic with aggregates and events.
 
-**Event-driven** — Generate optimized query models and trigger actions in response to domain events.
+**Event-driven** — Compute optimized query models and trigger actions in response to domain events.
 
-**Command-oriented** — Decouple application logic from UI by dispatching commands to handlers.
+**Command-oriented** — Decouple application logic from the UI by dispatching commands to handlers.
 
-**Test-friendly** — Write scenarios to test your application and domain behavior.
+**Test-friendly** — Test your application and domain behavior with Given-When-Then scenarios.
+
+**Control-focused** — Plug in custom middlewares and storage adapters to fit your needs.
 
 **Framework-agnostic** — Build on any framework or none at all.
-
-**Control-focused** — Plug-in custom middlewares and storage adapters to fit your application's needs.
 
 ## Documentation
 

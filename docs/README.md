@@ -1,4 +1,17 @@
-# Documentation
+# BusFactor 2.x Documentation
+
+## Content
+
+- What is BusFactor
+- Installation
+- Requirements
+- Disclaimer
+- Building Blocks
+    - The Command Bus
+    - Aggregate Modeling
+    - The Event Bus
+    - Projections
+- A Complete Example
 
 ## Components
 
