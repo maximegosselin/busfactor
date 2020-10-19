@@ -8,15 +8,14 @@ use BusFactor\Projection\ProjectionInterface;
 use BusFactor\ProjectionStore\InMemoryProjectionStoreAdapter;
 use BusFactor\ProjectionStore\UnitOfWork;
 use Generator;
-use Memcached;
 
 class MemcachedProjectionStoreAdapterMock extends MemcachedProjectionStoreAdapter
 {
     private InMemoryProjectionStoreAdapter $adapter;
 
-    public function __construct(Memcached $memcached, string $namespace = 'projection-store')
+    public function __construct(callable $resolver, string $namespace = 'projection-store')
     {
-        parent::__construct($memcached, $namespace);
+        parent::__construct($resolver, $namespace);
         $this->adapter = new InMemoryProjectionStoreAdapter();
     }
 

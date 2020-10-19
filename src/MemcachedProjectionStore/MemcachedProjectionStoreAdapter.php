@@ -10,23 +10,27 @@ use BusFactor\ProjectionStore\ProjectionNotFoundException;
 use BusFactor\ProjectionStore\UnitOfWork;
 use Generator;
 use Memcached;
+use RuntimeException;
 
 class MemcachedProjectionStoreAdapter implements AdapterInterface
 {
+    /** @var callable */
+    private $resolver;
+
     private Memcached $memcached;
 
     private string $namespace;
 
-    public function __construct(Memcached $memcached, string $namespace = 'projection-store')
+    public function __construct(callable $resolver, string $namespace = 'projection-store')
     {
-        $this->memcached = $memcached;
+        $this->resolver = $resolver;
         $this->namespace = $namespace;
     }
 
     public function find(string $id, string $class): ProjectionInterface
     {
         $key = $this->resolveKey($id, $class);
-        $projection = $this->memcached->get($key);
+        $projection = $this->getMemcached()->get($key);
         if (!$projection) {
             throw ProjectionNotFoundException::forProjection($class, $id);
         }
@@ -36,19 +40,19 @@ class MemcachedProjectionStoreAdapter implements AdapterInterface
 
     public function findBy(string $class): Generator
     {
-        $keys = $this->memcached->get($class);
+        $keys = $this->getMemcached()->get($class);
         if (!$keys) {
             $keys = [];
         }
         foreach ($keys as $key) {
-            yield $this->memcached->get($key);
+            yield $this->getMemcached()->get($key);
         }
     }
 
     public function has(string $id, string $class): bool
     {
         $key = $this->resolveKey($id, $class);
-        return (bool) $this->memcached->get($key);
+        return (bool) $this->getMemcached()->get($key);
     }
 
     public function commit(UnitOfWork $unit): void
@@ -63,21 +67,34 @@ class MemcachedProjectionStoreAdapter implements AdapterInterface
 
     public function purge(): void
     {
-        $keys = $this->memcached->get($this->namespace . ':keys');
+        $keys = $this->getMemcached()->get($this->namespace . ':keys');
         if (!$keys) {
             $keys = [];
         }
         foreach ($keys as $key) {
-            $this->memcached->delete($key);
+            $this->getMemcached()->delete($key);
         }
 
-        $classes = $this->memcached->get($this->namespace . ':classes');
+        $classes = $this->getMemcached()->get($this->namespace . ':classes');
         if ($classes) {
             foreach ($classes as $class) {
-                $this->memcached->delete($class);
+                $this->getMemcached()->delete($class);
             }
         }
-        $this->memcached->set($this->namespace . ':keys', [], 0);
+        $this->getMemcached()->set($this->namespace . ':keys', [], 0);
+    }
+
+    private function getMemcached(): Memcached
+    {
+        if (!$this->memcached) {
+            $resolver = $this->resolver;
+            $memcached = $resolver();
+            if (!$memcached instanceof Memcached) {
+                throw new RuntimeException('Resolver does not return an instance of Memcached.');
+            }
+            $this->memcached = $memcached;
+        }
+        return $this->memcached;
     }
 
     private function store(ProjectionInterface $projection): void
@@ -85,48 +102,48 @@ class MemcachedProjectionStoreAdapter implements AdapterInterface
         $class = get_class($projection);
         $id = $projection->getId();
         $key = $this->resolveKey($id, $class);
-        $this->memcached->set($key, $projection, 0);
+        $this->getMemcached()->set($key, $projection, 0);
 
-        $classes = $this->memcached->get($this->namespace . ':classes');
+        $classes = $this->getMemcached()->get($this->namespace . ':classes');
         if (!$classes) {
             $classes = [];
         }
         if (!in_array($class, $classes)) {
             $classes[] = $class;
-            $this->memcached->set($this->namespace . ':classes', $classes, 0);
+            $this->getMemcached()->set($this->namespace . ':classes', $classes, 0);
         }
 
-        $keys = $this->memcached->get($this->namespace . ':keys');
+        $keys = $this->getMemcached()->get($this->namespace . ':keys');
         if (!$keys) {
             $keys = [];
         }
         if (!in_array($key, $keys)) {
             $keys[$key] = $key;
-            $this->memcached->set($this->namespace . ':keys', $keys, 0);
+            $this->getMemcached()->set($this->namespace . ':keys', $keys, 0);
         }
 
-        $keys = $this->memcached->get($class);
+        $keys = $this->getMemcached()->get($class);
         if (!$keys) {
             $keys = [];
         }
         if (!in_array($key, $keys)) {
             $keys[$key] = $key;
-            $this->memcached->set($class, $keys, 0);
+            $this->getMemcached()->set($class, $keys, 0);
         }
     }
 
     private function remove(string $id, string $class): void
     {
         $key = $this->resolveKey($id, $class);
-        $this->memcached->delete($key);
+        $this->getMemcached()->delete($key);
 
-        $keys = $this->memcached->get($class);
+        $keys = $this->getMemcached()->get($class);
         unset($keys[$key]);
-        $this->memcached->set($class, $keys, 0);
+        $this->getMemcached()->set($class, $keys, 0);
 
-        $keys = $this->memcached->get($this->namespace . ':keys');
+        $keys = $this->getMemcached()->get($this->namespace . ':keys');
         unset($keys[$key]);
-        $this->memcached->set($this->namespace . ':keys', $keys, 0);
+        $this->getMemcached()->set($this->namespace . ':keys', $keys, 0);
     }
 
     private function resolveKey(string $id, string $class): string
