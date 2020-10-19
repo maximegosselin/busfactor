@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace BusFactor\Example\Command;
 
-use BusFactor\CommandBus\CommandInterface;
-
-class ChangePlayerNameCommand implements CommandInterface
+class ChangePlayerNameCommand
 {
     /** @var string */
     private $id;

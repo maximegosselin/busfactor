@@ -6,5 +6,5 @@ namespace BusFactor\CommandBus;
 
 interface CommandHandlerInterface
 {
-    public function handle(CommandInterface $command): void;
+    public function handle(object $command): void;
 }

@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace BusFactor\Example\Command;
 
-use BusFactor\CommandBus\CommandInterface;
-
-class RegisterPlayerCommand implements CommandInterface
+class RegisterPlayerCommand
 {
     /** @var string */
     private $id;

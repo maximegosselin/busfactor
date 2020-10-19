@@ -6,5 +6,5 @@ namespace BusFactor\CommandBus;
 
 interface CommandDispatcherInterface
 {
-    public function dispatch(CommandInterface $command): void;
+    public function dispatch(object $command): void;
 }

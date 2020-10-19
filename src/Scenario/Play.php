@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace BusFactor\Scenario;
 
 use BusFactor\CommandBus\CommandBusInterface;
-use BusFactor\CommandBus\CommandInterface;
 use BusFactor\EventBus\EventBusInterface;
 use BusFactor\EventStore\EventStoreInterface;
 use BusFactor\EventStream\Stream;
@@ -17,10 +16,10 @@ class Play
     /** @var Stream[] */
     private array $initialStreams = [];
 
-    /** @var CommandInterface[] */
+    /** @var object[] */
     private array $initialCommands = [];
 
-    /** @var CommandInterface[] */
+    /** @var object[] */
     private array $commands = [];
 
     /** @var callable[] */
@@ -53,7 +52,7 @@ class Play
     {
         $clone = clone $this;
         foreach ($commands as $command) {
-            if (!($command instanceof CommandInterface) && !is_callable($command)) {
+            if (!is_object($command) && !is_callable($command)) {
                 throw new InvalidArgumentException();
             }
             $clone->initialCommands[] = $command;
@@ -72,7 +71,7 @@ class Play
     {
         $clone = clone $this;
         foreach ($commands as $command) {
-            if (!($command instanceof CommandInterface) && !is_callable($command)) {
+            if (!is_object($command) && !is_callable($command)) {
                 throw new InvalidArgumentException();
             }
             $clone->commands[] = $command;

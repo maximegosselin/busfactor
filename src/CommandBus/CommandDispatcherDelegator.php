@@ -16,7 +16,7 @@ class CommandDispatcherDelegator implements CommandDispatcherInterface
         $this->next = $next;
     }
 
-    public function dispatch(CommandInterface $command): void
+    public function dispatch(object $command): void
     {
         $this->middleware->dispatch($command, $this->next);
     }

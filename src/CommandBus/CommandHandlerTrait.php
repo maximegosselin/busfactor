@@ -8,7 +8,7 @@ use RuntimeException;
 
 trait CommandHandlerTrait
 {
-    public function handle(CommandInterface $command): void
+    public function handle(object $command): void
     {
         $classParts = explode('\\', get_class($command));
         $method = 'handle' . end($classParts);

@@ -20,7 +20,7 @@ class CommandBus implements CommandBusInterface
         $this->chain = null;
     }
 
-    public function dispatch(CommandInterface $command): void
+    public function dispatch(object $command): void
     {
         if (!$this->chain) {
             $this->chainMiddlewares();

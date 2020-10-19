@@ -9,7 +9,7 @@ class Router implements CommandDispatcherInterface
     /** @var CommandHandlerInterface[] */
     private array $map;
 
-    public function dispatch(CommandInterface $command): void
+    public function dispatch(object $command): void
     {
         if (is_object($command)) {
             $this->route($command);
@@ -21,7 +21,7 @@ class Router implements CommandDispatcherInterface
         $this->map[$commandClass] = $handler;
     }
 
-    private function route(CommandInterface $command): void
+    private function route(object $command): void
     {
         $name = get_class($command);
         if (isset($this->map[$name])) {
