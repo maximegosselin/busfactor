@@ -1,16 +1,6 @@
 <?php
-declare(strict_types=1);
 
-function absoluteDeps(string $component, array $deps): array
-{
-    $absoluteDeps = $deps[$component];
-    foreach ($deps[$component] as $directDep) {
-        $absoluteDeps = array_merge($absoluteDeps, absoluteDeps($directDep, $deps));
-    }
-    $absoluteDeps = array_unique($absoluteDeps);
-    sort($absoluteDeps);
-    return $absoluteDeps;
-}
+declare(strict_types=1);
 
 $deps = [];
 foreach (glob('./src/**/*.php') as $file) {
@@ -30,27 +20,18 @@ foreach (glob('./src/**/*.php') as $file) {
         $dep = substr($match, 0, strpos($match, '\\'));
         if ($component != $dep) {
             $deps[$component][$dep] = $dep;
-            $deps[$component] = array_unique($deps[$component]);
-        }
-    }
-}
-
-foreach ($deps as $component => $directDeps) {
-    foreach ($directDeps as $directDep) {
-        $absoluteDeps = absoluteDeps($directDep, $deps);
-        foreach ($absoluteDeps as $absoluteDep) {
-            unset($deps[$component][$absoluteDep]);
         }
     }
 }
 
 $dot = [];
-foreach ($deps as $component => $directDeps) {
+foreach ($deps as $component => $componentDeps) {
     $dot[] = '    ' . $component;
-    foreach ($directDeps as $directDep) {
-        $dot[] = sprintf('    %s -> %s', $component, $directDep);
+    foreach ($componentDeps as $dep) {
+        $dot[] = sprintf('    %s -> %s', $component, $dep);
     }
 }
+sort($dot);
 
 echo 'digraph {' . PHP_EOL;
 echo implode(PHP_EOL, $dot) . PHP_EOL;
