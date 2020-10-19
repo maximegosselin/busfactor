@@ -1,4 +1,4 @@
-# Documentation
+# BusFactor 2.x Documentation
 
 ## Components
 
