@@ -7,11 +7,10 @@
 - Requirements
 - Disclaimer
 - Building Blocks
-    - The Command Bus
+    - [The Command Bus](command-bus.md)
     - Aggregate Modeling
     - The Event Bus
     - Projections
-- A Complete Example
 
 ## Components
 
