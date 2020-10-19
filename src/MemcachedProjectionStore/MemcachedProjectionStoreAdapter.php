@@ -13,11 +13,9 @@ use Memcached;
 
 class MemcachedProjectionStoreAdapter implements AdapterInterface
 {
-    /** @var Memcached */
-    private $memcached;
+    private Memcached $memcached;
 
-    /** @var string */
-    private $namespace;
+    private string $namespace;
 
     public function __construct(Memcached $memcached, string $namespace = 'projection-store')
     {

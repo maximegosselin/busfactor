@@ -12,8 +12,7 @@ use BusFactor\EventStream\Stream;
 
 class Inspector implements InspectorInterface
 {
-    /** @var EventBusInterface */
-    private $eventBus;
+    private EventBusInterface $eventBus;
 
     /** @var callable|null */
     private $before;

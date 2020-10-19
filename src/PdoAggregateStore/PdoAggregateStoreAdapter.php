@@ -13,20 +13,17 @@ use PDO;
 
 class PdoAggregateStoreAdapter implements AdapterInterface
 {
-    /** @var PdoInterface */
-    private $pdo;
+    private PdoInterface $pdo;
 
-    /** @var Config */
-    private $config;
+    private Config $config;
 
-    /** @var ObjectSerializerInterface */
-    private $serialize;
+    private ObjectSerializerInterface $serializer;
 
     public function __construct(PdoInterface $pdo, Config $config, ObjectSerializerInterface $serialize)
     {
         $this->pdo = $pdo;
         $this->config = $config;
-        $this->serialize = $serialize;
+        $this->serializer = $serialize;
     }
 
     public function find(string $aggregateId, string $aggregateType): AggregateInterface
@@ -50,7 +47,7 @@ class PdoAggregateStoreAdapter implements AdapterInterface
             throw AggregateNotFoundException::forAggregate($aggregateId, $aggregateType);
         }
         /** @var AggregateInterface $aggregate */
-        $aggregate = $this->serialize->deserialize(
+        $aggregate = $this->serializer->deserialize(
             is_resource($aggregatePayload) ? stream_get_contents($aggregatePayload) : $aggregatePayload
         );
 
@@ -77,7 +74,7 @@ class PdoAggregateStoreAdapter implements AdapterInterface
     {
         $id = $aggregate->getAggregateId();
         $type = $aggregate::getType();
-        $payload = $this->serialize->serialize($aggregate);
+        $payload = $this->serializer->serialize($aggregate);
         $this->remove($id, $type);
 
         $insertColumns = [

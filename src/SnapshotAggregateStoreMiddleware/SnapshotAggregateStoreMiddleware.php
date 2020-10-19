@@ -15,14 +15,11 @@ use RuntimeException;
 
 class SnapshotAggregateStoreMiddleware implements MiddlewareInterface
 {
-    /** @var AggregateStoreInterface */
-    private $snapshots;
+    private AggregateStoreInterface $snapshots;
 
-    /** @var EventStoreInterface */
-    private $eventStore;
+    private EventStoreInterface $eventStore;
 
-    /** @var StrategyInterface */
-    private $strategy;
+    private StrategyInterface $strategy;
 
     public function __construct(AggregateStoreInterface $snapshots, EventStoreInterface $eventStore, StrategyInterface $strategy)
     {

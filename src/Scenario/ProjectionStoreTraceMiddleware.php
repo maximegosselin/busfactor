@@ -11,10 +11,9 @@ use BusFactor\ProjectionStore\ProjectionStoreInterface;
 class ProjectionStoreTraceMiddleware implements MiddlewareInterface
 {
     /** @var ProjectionInterface[] */
-    private $traceStack = [];
+    private array $traceStack = [];
 
-    /** @var bool */
-    private $tracing = false;
+    private bool $tracing = false;
 
     public function find(string $id, string $class, ProjectionStoreInterface $next): ProjectionInterface
     {

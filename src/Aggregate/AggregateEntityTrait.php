@@ -8,14 +8,11 @@ use RuntimeException;
 
 trait AggregateEntityTrait
 {
-    /** @var bool */
-    private $aggregateEntityTrait_isRoot = true;
+    private bool $aggregateEntityTrait_isRoot = true;
 
-    /** @var AggregateInterface|null */
-    private $aggregateEntityTrait_root;
+    private ?AggregateInterface $aggregateEntityTrait_root = null;
 
-    /** @var array */
-    private $aggregateEntityTrait_childEntities = [];
+    private array $aggregateEntityTrait_childEntities = [];
 
     public function __attachAggregateRoot($aggregateRoot): void
     {

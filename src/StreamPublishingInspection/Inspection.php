@@ -9,11 +9,9 @@ use BusFactor\EventStore\AdapterInterface;
 
 class Inspection
 {
-    /** @var AdapterInterface */
-    private $adapter;
+    private AdapterInterface $adapter;
 
-    /** @var EventBusInterface */
-    private $eventBus;
+    private EventBusInterface $eventBus;
 
     public function __construct(AdapterInterface $adapter, EventBusInterface $eventBus)
     {

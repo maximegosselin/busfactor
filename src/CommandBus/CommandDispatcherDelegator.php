@@ -6,11 +6,9 @@ namespace BusFactor\CommandBus;
 
 class CommandDispatcherDelegator implements CommandDispatcherInterface
 {
-    /** @var MiddlewareInterface */
-    private $middleware;
+    private MiddlewareInterface $middleware;
 
-    /** @var CommandDispatcherInterface|null */
-    private $next;
+    private ?CommandDispatcherInterface $next;
 
     public function __construct(MiddlewareInterface $middleware, ?CommandDispatcherInterface $next = null)
     {

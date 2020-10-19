@@ -10,8 +10,7 @@ use ReflectionClass;
 
 class StreamMustExist extends Constraint
 {
-    /** @var string */
-    private $streamId;
+    private string $streamId;
 
     public function __construct(string $streamId)
     {

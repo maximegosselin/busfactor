@@ -8,14 +8,12 @@ use BusFactor\EventStream\Stream;
 
 class EventStore implements EventStoreInterface
 {
-    /** @var AdapterInterface */
-    private $adapter;
+    private AdapterInterface $adapter;
 
     /** @var MiddlewareInterface[] */
-    private $middlewares = [];
+    private array $middlewares = [];
 
-    /** @var EventStoreInterface */
-    private $chain;
+    private EventStoreInterface $chain;
 
     public function __construct(AdapterInterface $adapter)
     {

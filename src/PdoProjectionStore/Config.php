@@ -8,11 +8,10 @@ use InvalidArgumentException;
 
 class Config
 {
-    /** @var string */
-    private $table = 'projection_store';
+    private string $table = 'projection_store';
 
     /** @var string[] */
-    private $aliases = [
+    private array $aliases = [
         'projection_id' => 'projection_id',
         'projection_class' => 'projection_class',
         'projection_payload' => 'projection_payload',

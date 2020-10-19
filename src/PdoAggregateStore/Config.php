@@ -8,11 +8,10 @@ use InvalidArgumentException;
 
 class Config
 {
-    /** @var string */
-    private $table = 'aggregate_store';
+    private string $table = 'aggregate_store';
 
     /** @var string[] */
-    private $aliases = [
+    private array $aliases = [
         'aggregate_id' => 'aggregate_id',
         'aggregate_type' => 'aggregate_type',
         'aggregate_payload' => 'aggregate_payload',

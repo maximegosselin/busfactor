@@ -8,11 +8,9 @@ use BusFactor\Projection\ProjectionInterface;
 
 class OperatorDelegator implements ProjectionStoreInterface
 {
-    /** @var MiddlewareInterface */
-    private $middleware;
+    private MiddlewareInterface $middleware;
 
-    /** @var ProjectionStoreInterface|null */
-    private $next;
+    private ?ProjectionStoreInterface $next = null;
 
     public function __construct(MiddlewareInterface $middleware, ?ProjectionStoreInterface $next = null)
     {

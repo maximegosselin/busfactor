@@ -8,14 +8,12 @@ trait AggregateRootTrait
 {
     use AggregateEntityTrait;
 
-    /** @var string */
-    private $aggregateRootTrait_aggregateId;
+    private string $aggregateRootTrait_aggregateId;
 
-    /** @var int */
-    private $aggregateRootTrait_version = 0;
+    private int $aggregateRootTrait_version = 0;
 
     /** @var RecordedEvent[] */
-    private $aggregateRootTrait_newEvents = [];
+    private array $aggregateRootTrait_newEvents = [];
 
     public function __construct(string $aggregateId)
     {

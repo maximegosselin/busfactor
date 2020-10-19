@@ -8,11 +8,9 @@ use BusFactor\EventStream\Stream;
 
 class StoreDelegator implements EventStoreInterface
 {
-    /** @var MiddlewareInterface */
-    private $middleware;
+    private MiddlewareInterface $middleware;
 
-    /** @var EventStoreInterface|null */
-    private $next;
+    private ?EventStoreInterface $next = null;
 
     public function __construct(MiddlewareInterface $middleware, ?EventStoreInterface $next = null)
     {

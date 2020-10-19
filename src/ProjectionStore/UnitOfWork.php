@@ -9,10 +9,10 @@ use BusFactor\Projection\ProjectionInterface;
 class UnitOfWork
 {
     /** @var ProjectionInterface[] */
-    private $store = [];
+    private array $store = [];
 
     /** @var ProjectionDescriptor[] */
-    private $remove = [];
+    private array $remove = [];
 
     public function store(ProjectionInterface $projection): void
     {

@@ -15,20 +15,15 @@ use BusFactor\ProjectionStore\ProjectionStore;
 
 class Scenario
 {
-    /** @var EventBus */
-    private $eventBus;
+    private EventBus $eventBus;
 
-    /** @var CommandBusInterface */
-    private $commandBus;
+    private CommandBusInterface $commandBus;
 
-    /** @var EventStoreInterface */
-    private $eventStore;
+    private EventStoreInterface $eventStore;
 
-    /** @var EventBusTraceMiddleware */
-    private $eventBusTrace;
+    private EventBusTraceMiddleware $eventBusTrace;
 
-    /** @var ProjectionStoreTraceMiddleware */
-    private $projectionStoreTrace;
+    private ProjectionStoreTraceMiddleware $projectionStoreTrace;
 
     public function __construct(
         ?EventBus $eventBus = null,

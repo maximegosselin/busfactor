@@ -21,11 +21,9 @@ use PDOException;
 
 class PdoEventStoreAdapter implements AdapterInterface
 {
-    /** @var PdoInterface */
-    private $pdo;
+    private PdoInterface $pdo;
 
-    /** @var Config */
-    private $config;
+    private Config $config;
 
     public function __construct(PdoInterface $pdo, Config $config)
     {

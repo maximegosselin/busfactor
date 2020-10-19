@@ -8,14 +8,12 @@ use BusFactor\Aggregate\AggregateInterface;
 
 class AggregateStore implements AggregateStoreInterface
 {
-    /** @var AdapterInterface */
-    private $adapter;
+    private AdapterInterface $adapter;
 
     /** @var MiddlewareInterface[] */
-    private $middlewares = [];
+    private array $middlewares = [];
 
-    /** @var AggregateStoreInterface */
-    private $chain;
+    private AggregateStoreInterface $chain;
 
     public function __construct(AdapterInterface $adapter)
     {

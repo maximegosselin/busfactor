@@ -10,8 +10,7 @@ use InvalidArgumentException;
 
 class EventSourcedAggregateFactory
 {
-    /** @var string */
-    private $aggregateRootClass;
+    private string $aggregateRootClass;
 
     public function __construct(string $aggregateRootClass)
     {

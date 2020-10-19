@@ -10,8 +10,7 @@ use ReflectionClass;
 
 class StreamsMustContain extends Constraint
 {
-    /** @var string */
-    private $eventClass;
+    private string $eventClass;
 
     public function __construct(string $eventClass)
     {

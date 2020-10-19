@@ -11,17 +11,13 @@ use InvalidArgumentException;
 
 class Envelope
 {
-    /** @var StreamEventInterface */
-    private $event;
+    private StreamEventInterface $event;
 
-    /** @var Metadata */
-    private $metadata;
+    private Metadata $metadata;
 
-    /** @var int */
-    private $version;
+    private int $version;
 
-    /** @var DateTimeInterface */
-    private $recordTime;
+    private DateTimeInterface $recordTime;
 
     private function __construct(
         StreamEventInterface $event,

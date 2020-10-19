@@ -8,11 +8,9 @@ use BusFactor\Projection\ProjectionInterface;
 
 class ProjectionDescriptor
 {
-    /** @var string */
-    private $id;
+    private string $id;
 
-    /** @var string */
-    private $class;
+    private string $class;
 
     public function __construct(string $id, string $class)
     {

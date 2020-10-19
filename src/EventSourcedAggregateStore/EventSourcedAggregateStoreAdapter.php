@@ -18,14 +18,11 @@ use RuntimeException;
 
 class EventSourcedAggregateStoreAdapter implements AdapterInterface
 {
-    /** @var EventSourcedAggregateFactory */
-    private $aggregateFactory;
+    private EventSourcedAggregateFactory $aggregateFactory;
 
-    /** @var EventStoreInterface */
-    private $eventStore;
+    private EventStoreInterface $eventStore;
 
-    /** @var EventBusInterface */
-    private $eventBus;
+    private EventBusInterface $eventBus;
 
     public function __construct(
         EventSourcedAggregateFactory $aggregateFactory,

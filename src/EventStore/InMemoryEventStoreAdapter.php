@@ -10,11 +10,10 @@ use RuntimeException;
 
 class InMemoryEventStoreAdapter implements AdapterInterface
 {
-    /** @var array */
-    private $storage = [];
+    private array $storage = [];
 
     /** @var array[] */
-    private $chronologicalIndex = [];
+    private array $chronologicalIndex = [];
 
     public function fetch(string $streamId, string $streamType, int $fromVersion = 0): Stream
     {

@@ -9,14 +9,11 @@ use DateTimeInterface;
 
 class RecordedEvent
 {
-    /** @var EventInterface */
-    private $event;
+    private EventInterface $event;
 
-    /** @var int */
-    private $version;
+    private int $version;
 
-    /** @var DateTimeInterface */
-    private $recordTime;
+    private DateTimeInterface $recordTime;
 
     public function __construct(EventInterface $event, int $version)
     {

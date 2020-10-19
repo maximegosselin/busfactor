@@ -16,14 +16,11 @@ use RuntimeException;
 
 class PdoProjectionStoreAdapter implements AdapterInterface
 {
-    /** @var PdoInterface */
-    private $pdo;
+    private PdoInterface $pdo;
 
-    /** @var ObjectSerializerInterface */
-    private $serializer;
+    private ObjectSerializerInterface $serializer;
 
-    /** @var Config */
-    private $config;
+    private Config $config;
 
     public function __construct(PdoInterface $pdo, ObjectSerializerInterface $serializer, Config $config)
     {

@@ -6,14 +6,12 @@ namespace BusFactor\ObjectSerializer;
 
 class ObjectSerializer implements ObjectSerializerInterface
 {
-    /** @var AdapterInterface */
-    private $adapter;
+    private AdapterInterface $adapter;
 
     /** @var MiddlewareInterface[] */
-    private $middlewares = [];
+    private array $middlewares = [];
 
-    /** @var ObjectSerializerInterface|null */
-    private $chain;
+    private ?ObjectSerializerInterface $chain = null;
 
     public function __construct(AdapterInterface $adapter)
     {

@@ -6,8 +6,7 @@ namespace BusFactor\EventStream;
 
 class Metadata
 {
-    /** @var array */
-    private $data = [];
+    private array $data = [];
 
     public function __construct(array $data = [])
     {

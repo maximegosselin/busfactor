@@ -6,14 +6,12 @@ namespace BusFactor\CommandBus;
 
 class CommandBus implements CommandBusInterface
 {
-    /** @var Router */
-    private $router;
+    private Router $router;
 
     /** @var MiddlewareInterface[] */
-    private $middlewares = [];
+    private array $middlewares = [];
 
-    /** @var CommandDispatcherInterface|null */
-    private $chain = null;
+    private ?CommandDispatcherInterface $chain = null;
 
     public function __construct()
     {

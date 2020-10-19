@@ -10,8 +10,7 @@ use ReflectionClass;
 
 class StreamsMustCount extends Constraint
 {
-    /** @var int */
-    private $count;
+    private int $count;
 
     public function __construct(int $count)
     {

@@ -10,8 +10,7 @@ use ReflectionClass;
 
 class ProjectionsMustContainOnly extends Constraint
 {
-    /** @var string */
-    private $projectionClass;
+    private string $projectionClass;
 
     public function __construct(string $projectionClass)
     {

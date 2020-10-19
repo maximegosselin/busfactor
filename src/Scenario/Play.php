@@ -15,28 +15,27 @@ use InvalidArgumentException;
 class Play
 {
     /** @var Stream[] */
-    private $initialStreams = [];
+    private array $initialStreams = [];
 
     /** @var CommandInterface[] */
-    private $initialCommands = [];
+    private array $initialCommands = [];
 
     /** @var CommandInterface[] */
-    private $commands = [];
+    private array $commands = [];
 
     /** @var callable[] */
-    private $actions = [];
+    private array $actions = [];
 
     /** @var callable[] */
-    private $eventsAssertions = [];
+    private array $eventsAssertions = [];
 
     /** @var callable[] */
-    private $projectionsAssertions = [];
+    private array $projectionsAssertions = [];
 
     /** @var callable[] */
-    private $customAssertions = [];
+    private array $customAssertions = [];
 
-    /** @var string|null */
-    private $expectedException;
+    private ?string $expectedException = null;
 
     public function withInitialEvents(...$streams): self
     {

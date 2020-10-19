@@ -8,11 +8,9 @@ use BusFactor\Projection\ProjectionInterface;
 
 class TransactionalStore implements ProjectionStoreInterface
 {
-    /** @var AdapterInterface */
-    private $adapter;
+    private AdapterInterface $adapter;
 
-    /** @var UnitOfWork */
-    private $unit;
+    private UnitOfWork $unit;
 
     public function __construct(AdapterInterface $adapter)
     {

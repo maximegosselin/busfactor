@@ -11,8 +11,7 @@ use BusFactor\StreamEnricher\StreamEnricherInterface;
 
 class StreamEnricherEventBusMiddleware implements MiddlewareInterface
 {
-    /** @var StreamEnricherInterface */
-    private $enricher;
+    private StreamEnricherInterface $enricher;
 
     public function __construct(StreamEnricherInterface $enricher)
     {

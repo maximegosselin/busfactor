@@ -9,13 +9,11 @@ use RuntimeException;
 class Filter
 {
     /** @var string[] */
-    private $onlyClasses = [];
+    private array $onlyClasses = [];
 
-    /** @var bool */
-    private $reverse;
+    private bool $reverse;
 
-    /** @var int */
-    private $limit;
+    private int $limit;
 
     public function __construct(?bool $reverse = false, ?int $limit = 0, string ...$onlyClasses)
     {

@@ -8,8 +8,7 @@ use BusFactor\EventStore\AdapterInterface;
 
 class EventStoreReductionInspection
 {
-    /** @var AdapterInterface */
-    private $adapter;
+    private AdapterInterface $adapter;
 
     public function __construct(AdapterInterface $adapter)
     {

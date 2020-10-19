@@ -9,8 +9,7 @@ use Generator;
 
 class InMemoryProjectionStoreAdapter implements AdapterInterface
 {
-    /** @var array */
-    private $projections;
+    private array $projections;
 
     public function find(string $id, string $class): ProjectionInterface
     {

@@ -8,11 +8,10 @@ use InvalidArgumentException;
 
 class Config
 {
-    /** @var string */
-    private $table = 'event_store';
+    private string $table = 'event_store';
 
     /** @var string[] */
-    private $aliases = [
+    private array $aliases = [
         'sequence' => 'sequence',
         'stream_type' => 'stream_type',
         'stream_id' => 'stream_id',
@@ -24,8 +23,7 @@ class Config
         'event_time' => 'event_time',
     ];
 
-    /** @var bool */
-    private $eventBuffering = true;
+    private bool $eventBuffering = true;
 
     public function withEventBuffering(bool $active): self
     {

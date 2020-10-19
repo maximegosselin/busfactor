@@ -8,11 +8,9 @@ use BusFactor\Aggregate\AggregateInterface;
 
 class StoreDelegator implements AggregateStoreInterface
 {
-    /** @var MiddlewareInterface */
-    private $middleware;
+    private MiddlewareInterface $middleware;
 
-    /** @var AggregateStoreInterface|null */
-    private $next;
+    private ?AggregateStoreInterface $next = null;
 
     public function __construct(MiddlewareInterface $middleware, ?AggregateStoreInterface $next = null)
     {

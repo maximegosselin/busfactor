@@ -10,7 +10,7 @@ use Countable;
 class UpdatedProjections implements Countable
 {
     /** @var ProjectionInterface[] */
-    private $updatedProjections;
+    private array $updatedProjections;
 
     public function __construct(array $updatedProjections)
     {

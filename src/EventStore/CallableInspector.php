@@ -11,8 +11,7 @@ class CallableInspector implements InspectorInterface
     /** @var callable */
     private $callable;
 
-    /** @var Filter */
-    private $filter;
+    private Filter $filter;
 
     public function __construct(callable $callable, Filter $filter)
     {

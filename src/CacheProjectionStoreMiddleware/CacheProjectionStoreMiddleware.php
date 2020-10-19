@@ -12,7 +12,7 @@ use BusFactor\ProjectionStore\ProjectionStoreInterface;
 class CacheProjectionStoreMiddleware implements MiddlewareInterface
 {
     /** @var ProjectionInterface[] */
-    private $cache = [];
+    private array $cache = [];
 
     public function find(string $id, string $class, ProjectionStoreInterface $next): ProjectionInterface
     {

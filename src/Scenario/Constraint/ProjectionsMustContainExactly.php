@@ -10,14 +10,11 @@ use ReflectionClass;
 
 class ProjectionsMustContainExactly extends Constraint
 {
-    /** @var int */
-    private $count;
+    private int $count;
 
-    /** @var string */
-    private $projectionClass;
+    private string $projectionClass;
 
-    /** @var int */
-    private $found;
+    private int $found;
 
     public function __construct(int $count, string $projectionClass)
     {

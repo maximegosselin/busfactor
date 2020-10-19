@@ -6,20 +6,16 @@ namespace BusFactor\EventStream;
 
 class Stream
 {
-    /** @var string */
-    private $streamId;
+    private string $streamId;
 
-    /** @var string */
-    private $streamType;
+    private string $streamType;
 
     /** @var Envelope[] */
-    private $envelopes = [];
+    private array $envelopes = [];
 
-    /** @var int */
-    private $lowestVersion = 0;
+    private int $lowestVersion = 0;
 
-    /** @var int */
-    private $highestVersion = 0;
+    private int $highestVersion = 0;
 
     public function __construct(string $streamId, string $streamType)
     {

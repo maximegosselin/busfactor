@@ -6,11 +6,9 @@ namespace BusFactor\ObjectSerializer;
 
 class ObjectSerializerDelegator implements ObjectSerializerInterface
 {
-    /** @var MiddlewareInterface */
-    private $middleware;
+    private MiddlewareInterface $middleware;
 
-    /** @var ObjectSerializerInterface|null */
-    private $next;
+    private ?ObjectSerializerInterface $next = null;
 
     public function __construct(MiddlewareInterface $middleware, ?ObjectSerializerInterface $next)
     {

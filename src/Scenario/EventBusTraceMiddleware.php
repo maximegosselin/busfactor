@@ -11,10 +11,9 @@ use BusFactor\EventStream\Stream;
 class EventBusTraceMiddleware implements MiddlewareInterface
 {
     /** @var Stream[] */
-    private $traceStack = [];
+    private array $traceStack = [];
 
-    /** @var bool */
-    private $tracing = false;
+    private bool $tracing = false;
 
     public function publish(Stream $stream, EventStreamPublisherInterface $next): void
     {

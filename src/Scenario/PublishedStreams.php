@@ -11,7 +11,7 @@ use Countable;
 class PublishedStreams implements Countable
 {
     /** @var Stream[] */
-    private $streams;
+    private array $streams;
 
     public function __construct(array $streams)
     {

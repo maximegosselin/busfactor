@@ -13,11 +13,9 @@ class PdoProxy implements PdoInterface
     /** @var callable */
     private $resolver;
 
-    /** @var bool */
-    private $resolved = false;
+    private bool $resolved = false;
 
-    /** @var PDO|null */
-    private $pdo;
+    private ?PDO $pdo = null;
 
     /**
      * @param callable $resolver A callable that returns an instance of PDO

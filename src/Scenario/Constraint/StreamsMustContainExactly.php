@@ -10,14 +10,11 @@ use ReflectionClass;
 
 class StreamsMustContainExactly extends Constraint
 {
-    /** @var int */
-    private $count;
+    private int $count;
 
-    /** @var string */
-    private $eventClass;
+    private string $eventClass;
 
-    /** @var int */
-    private $found;
+    private int $found;
 
     public function __construct(int $count, string $eventClass)
     {

@@ -9,7 +9,7 @@ use BusFactor\Aggregate\AggregateInterface;
 class InMemoryAggregateStoreAdapter implements AdapterInterface
 {
     /** @var AggregateInterface[][] */
-    private $aggregates = [];
+    private array $aggregates = [];
 
     public function find(string $aggregateId, string $aggregateType): AggregateInterface
     {

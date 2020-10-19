@@ -8,8 +8,7 @@ use BusFactor\Aggregate\AggregateInterface;
 
 class Step implements StrategyInterface
 {
-    /** @var int */
-    private $step;
+    private int $step;
 
     public function __construct(int $step = 100)
     {

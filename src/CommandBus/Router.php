@@ -7,7 +7,7 @@ namespace BusFactor\CommandBus;
 class Router implements CommandDispatcherInterface
 {
     /** @var CommandHandlerInterface[] */
-    private $map;
+    private array $map;
 
     public function dispatch(CommandInterface $command): void
     {

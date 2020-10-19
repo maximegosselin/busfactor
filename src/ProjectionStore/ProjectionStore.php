@@ -8,14 +8,12 @@ use BusFactor\Projection\ProjectionInterface;
 
 class ProjectionStore implements ProjectionStoreInterface
 {
-    /** @var TransactionalStore */
-    private $store;
+    private TransactionalStore $store;
 
     /** @var MiddlewareInterface[] */
-    private $middlewares = [];
+    private array $middlewares = [];
 
-    /** @var ProjectionStoreInterface|null */
-    private $chain;
+    private ?ProjectionStoreInterface $chain = null;
 
     public function __construct(AdapterInterface $adapter)
     {

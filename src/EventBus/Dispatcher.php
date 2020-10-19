@@ -10,7 +10,7 @@ use BusFactor\EventStream\Stream;
 class Dispatcher implements EventStreamPublisherInterface
 {
     /** @var EventHandlerInterface[][] */
-    private $subscribers = [];
+    private array $subscribers = [];
 
     public function publish(Stream $stream): void
     {

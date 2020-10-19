@@ -8,14 +8,12 @@ use BusFactor\EventStream\Stream;
 
 class EventBus implements EventBusInterface
 {
-    /** @var Dispatcher */
-    private $dispatcher;
+    private Dispatcher $dispatcher;
 
     /** @var MiddlewareInterface[] */
-    private $middlewares = [];
+    private array $middlewares = [];
 
-    /** @var EventStreamPublisherInterface|null */
-    private $chain = null;
+    private ?EventStreamPublisherInterface $chain = null;
 
     public function __construct()
     {
