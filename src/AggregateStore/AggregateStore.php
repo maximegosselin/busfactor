@@ -6,7 +6,7 @@ namespace BusFactor\AggregateStore;
 
 use BusFactor\Aggregate\AggregateInterface;
 
-class AggregateStore implements AggregateStoreInterface
+final class AggregateStore implements AggregateStoreInterface
 {
     private AdapterInterface $adapter;
 

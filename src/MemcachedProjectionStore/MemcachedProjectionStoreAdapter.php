@@ -12,7 +12,7 @@ use Generator;
 use Memcached;
 use RuntimeException;
 
-class MemcachedProjectionStoreAdapter implements AdapterInterface
+final class MemcachedProjectionStoreAdapter implements AdapterInterface
 {
     /** @var callable */
     private $resolver;

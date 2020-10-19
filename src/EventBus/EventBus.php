@@ -6,7 +6,7 @@ namespace BusFactor\EventBus;
 
 use BusFactor\EventStream\Stream;
 
-class EventBus implements EventBusInterface
+final class EventBus implements EventBusInterface
 {
     private Dispatcher $dispatcher;
 

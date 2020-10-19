@@ -6,7 +6,7 @@ namespace BusFactor\Uuid;
 
 use Ramsey\Uuid\Uuid as RamseyUuid;
 
-class Uuid
+final class Uuid
 {
     public static function new(): string
     {

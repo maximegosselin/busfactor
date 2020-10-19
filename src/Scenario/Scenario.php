@@ -13,7 +13,7 @@ use BusFactor\EventStore\InMemoryEventStoreAdapter;
 use BusFactor\ProjectionStore\InMemoryProjectionStoreAdapter;
 use BusFactor\ProjectionStore\ProjectionStore;
 
-class Scenario
+final class Scenario
 {
     private EventBus $eventBus;
 

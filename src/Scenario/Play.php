@@ -11,7 +11,7 @@ use BusFactor\EventStream\Stream;
 use Exception;
 use InvalidArgumentException;
 
-class Play
+final class Play
 {
     /** @var Stream[] */
     private array $initialStreams = [];

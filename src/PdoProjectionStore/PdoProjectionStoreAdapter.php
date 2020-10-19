@@ -14,7 +14,7 @@ use Generator;
 use PDO;
 use RuntimeException;
 
-class PdoProjectionStoreAdapter implements AdapterInterface
+final class PdoProjectionStoreAdapter implements AdapterInterface
 {
     private PdoInterface $pdo;
 

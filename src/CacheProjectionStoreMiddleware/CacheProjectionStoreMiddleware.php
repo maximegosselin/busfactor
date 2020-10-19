@@ -9,7 +9,7 @@ use BusFactor\ProjectionStore\MiddlewareInterface;
 use BusFactor\ProjectionStore\ProjectionDescriptor;
 use BusFactor\ProjectionStore\ProjectionStoreInterface;
 
-class CacheProjectionStoreMiddleware implements MiddlewareInterface
+final class CacheProjectionStoreMiddleware implements MiddlewareInterface
 {
     /** @var ProjectionInterface[] */
     private array $cache = [];

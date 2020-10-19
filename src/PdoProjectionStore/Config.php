@@ -6,7 +6,7 @@ namespace BusFactor\PdoProjectionStore;
 
 use InvalidArgumentException;
 
-class Config
+final class Config
 {
     private string $table = 'projection_store';
 

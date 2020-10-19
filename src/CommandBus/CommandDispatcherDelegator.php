@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BusFactor\CommandBus;
 
-class CommandDispatcherDelegator implements CommandDispatcherInterface
+final class CommandDispatcherDelegator implements CommandDispatcherInterface
 {
     private MiddlewareInterface $middleware;
 

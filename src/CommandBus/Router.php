@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BusFactor\CommandBus;
 
-class Router implements CommandDispatcherInterface
+final class Router implements CommandDispatcherInterface
 {
     /** @var CommandHandlerInterface[] */
     private array $map;

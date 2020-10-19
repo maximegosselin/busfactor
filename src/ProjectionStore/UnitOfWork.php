@@ -6,7 +6,7 @@ namespace BusFactor\ProjectionStore;
 
 use BusFactor\Projection\ProjectionInterface;
 
-class UnitOfWork
+final class UnitOfWork
 {
     /** @var ProjectionInterface[] */
     private array $store = [];

@@ -6,7 +6,7 @@ namespace BusFactor\EventStore;
 
 use RuntimeException;
 
-class Filter
+final class Filter
 {
     /** @var string[] */
     private array $onlyClasses = [];
@@ -15,7 +15,7 @@ class Filter
 
     private int $limit;
 
-    public function __construct(?bool $reverse = false, ?int $limit = 0, string ...$onlyClasses)
+    public function __construct(bool $reverse = false, int $limit = 0, string ...$onlyClasses)
     {
         $this->reverse = $reverse;
         $this->limit = $limit;

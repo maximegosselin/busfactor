@@ -8,7 +8,7 @@ use BusFactor\Scenario\PublishedStreams;
 use PHPUnit\Framework\Constraint\Constraint;
 use ReflectionClass;
 
-class StreamsMustContain extends Constraint
+final class StreamsMustContain extends Constraint
 {
     private string $eventClass;
 

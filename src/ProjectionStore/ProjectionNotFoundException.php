@@ -6,7 +6,7 @@ namespace BusFactor\ProjectionStore;
 
 use Exception;
 
-class ProjectionNotFoundException extends Exception
+final class ProjectionNotFoundException extends Exception
 {
     public static function forProjection(string $class, string $id): self
     {

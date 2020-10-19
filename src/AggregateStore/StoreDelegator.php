@@ -6,7 +6,7 @@ namespace BusFactor\AggregateStore;
 
 use BusFactor\Aggregate\AggregateInterface;
 
-class StoreDelegator implements AggregateStoreInterface
+final class StoreDelegator implements AggregateStoreInterface
 {
     private MiddlewareInterface $middleware;
 

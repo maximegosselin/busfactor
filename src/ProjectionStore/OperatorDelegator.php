@@ -6,7 +6,7 @@ namespace BusFactor\ProjectionStore;
 
 use BusFactor\Projection\ProjectionInterface;
 
-class OperatorDelegator implements ProjectionStoreInterface
+final class OperatorDelegator implements ProjectionStoreInterface
 {
     private MiddlewareInterface $middleware;
 

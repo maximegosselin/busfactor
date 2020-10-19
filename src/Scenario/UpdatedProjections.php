@@ -7,7 +7,7 @@ namespace BusFactor\Scenario;
 use BusFactor\Projection\ProjectionInterface;
 use Countable;
 
-class UpdatedProjections implements Countable
+final class UpdatedProjections implements Countable
 {
     /** @var ProjectionInterface[] */
     private array $updatedProjections;

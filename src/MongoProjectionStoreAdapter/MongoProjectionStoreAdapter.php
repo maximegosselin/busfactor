@@ -13,7 +13,7 @@ use MongoDB\Collection;
 use MongoDB\Driver\BulkWrite;
 use RuntimeException;
 
-class MongoProjectionStoreAdapter implements AdapterInterface
+final class MongoProjectionStoreAdapter implements AdapterInterface
 {
     /** @var callable */
     private $resolver;

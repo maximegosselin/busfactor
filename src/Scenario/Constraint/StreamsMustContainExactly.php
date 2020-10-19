@@ -8,7 +8,7 @@ use BusFactor\Scenario\PublishedStreams;
 use PHPUnit\Framework\Constraint\Constraint;
 use ReflectionClass;
 
-class StreamsMustContainExactly extends Constraint
+final class StreamsMustContainExactly extends Constraint
 {
     private int $count;
 

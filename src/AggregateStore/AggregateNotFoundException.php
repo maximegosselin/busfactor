@@ -6,7 +6,7 @@ namespace BusFactor\AggregateStore;
 
 use Exception;
 
-class AggregateNotFoundException extends Exception
+final class AggregateNotFoundException extends Exception
 {
     public static function forAggregate(string $aggregateId, string $aggregateType, ?Exception $previous = null): self
     {

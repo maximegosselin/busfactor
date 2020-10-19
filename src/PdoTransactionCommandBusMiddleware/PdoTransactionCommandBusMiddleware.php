@@ -10,7 +10,7 @@ use BusFactor\Pdo\PdoInterface;
 use RuntimeException;
 use Throwable;
 
-class PdoTransactionCommandBusMiddleware implements MiddlewareInterface
+final class PdoTransactionCommandBusMiddleware implements MiddlewareInterface
 {
     private PdoInterface $pdo;
 

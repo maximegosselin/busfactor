@@ -6,7 +6,7 @@ namespace BusFactor\EventStoreReductionInspection;
 
 use BusFactor\EventStore\AdapterInterface;
 
-class EventStoreReductionInspection
+final class EventStoreReductionInspection
 {
     private AdapterInterface $adapter;
 

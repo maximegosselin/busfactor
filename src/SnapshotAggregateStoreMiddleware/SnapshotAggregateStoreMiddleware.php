@@ -13,7 +13,7 @@ use BusFactor\EventStore\EventStoreInterface;
 use BusFactor\EventStore\StreamNotFoundException;
 use RuntimeException;
 
-class SnapshotAggregateStoreMiddleware implements MiddlewareInterface
+final class SnapshotAggregateStoreMiddleware implements MiddlewareInterface
 {
     private AggregateStoreInterface $snapshots;
 

@@ -8,7 +8,7 @@ use BusFactor\EventSourcedAggregate\EventSourcedAggregateInterface;
 use BusFactor\EventStream\Stream;
 use InvalidArgumentException;
 
-class EventSourcedAggregateFactory
+final class EventSourcedAggregateFactory
 {
     private string $aggregateRootClass;
 

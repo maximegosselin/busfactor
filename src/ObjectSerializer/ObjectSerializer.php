@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BusFactor\ObjectSerializer;
 
-class ObjectSerializer implements ObjectSerializerInterface
+final class ObjectSerializer implements ObjectSerializerInterface
 {
     private AdapterInterface $adapter;
 

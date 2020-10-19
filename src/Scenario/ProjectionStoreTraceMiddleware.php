@@ -8,7 +8,7 @@ use BusFactor\Projection\ProjectionInterface;
 use BusFactor\ProjectionStore\MiddlewareInterface;
 use BusFactor\ProjectionStore\ProjectionStoreInterface;
 
-class ProjectionStoreTraceMiddleware implements MiddlewareInterface
+final class ProjectionStoreTraceMiddleware implements MiddlewareInterface
 {
     /** @var ProjectionInterface[] */
     private array $traceStack = [];

@@ -16,7 +16,7 @@ use BusFactor\EventStream\Stream;
 use InvalidArgumentException;
 use RuntimeException;
 
-class EventSourcedAggregateStoreAdapter implements AdapterInterface
+final class EventSourcedAggregateStoreAdapter implements AdapterInterface
 {
     private EventSourcedAggregateFactory $aggregateFactory;
 

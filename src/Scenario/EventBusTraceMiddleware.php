@@ -8,7 +8,7 @@ use BusFactor\EventBus\EventStreamPublisherInterface;
 use BusFactor\EventBus\MiddlewareInterface;
 use BusFactor\EventStream\Stream;
 
-class EventBusTraceMiddleware implements MiddlewareInterface
+final class EventBusTraceMiddleware implements MiddlewareInterface
 {
     /** @var Stream[] */
     private array $traceStack = [];

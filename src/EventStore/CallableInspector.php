@@ -6,7 +6,7 @@ namespace BusFactor\EventStore;
 
 use BusFactor\EventStream\Envelope;
 
-class CallableInspector implements InspectorInterface
+final class CallableInspector implements InspectorInterface
 {
     /** @var callable */
     private $callable;

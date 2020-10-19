@@ -6,6 +6,6 @@ namespace BusFactor\PdoEventStore;
 
 use BusFactor\EventStore\EventStoreException;
 
-class RevisionMismatchException extends EventStoreException
+final class RevisionMismatchException extends EventStoreException
 {
 }

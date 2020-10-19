@@ -6,7 +6,7 @@ namespace BusFactor\SnapshotAggregateStoreMiddleware;
 
 use BusFactor\Aggregate\AggregateInterface;
 
-class Always implements StrategyInterface
+final class Always implements StrategyInterface
 {
     public function mustSnapshot(AggregateInterface $aggregate): bool
     {

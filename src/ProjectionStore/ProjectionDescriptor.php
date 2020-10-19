@@ -6,7 +6,7 @@ namespace BusFactor\ProjectionStore;
 
 use BusFactor\Projection\ProjectionInterface;
 
-class ProjectionDescriptor
+final class ProjectionDescriptor
 {
     private string $id;
 

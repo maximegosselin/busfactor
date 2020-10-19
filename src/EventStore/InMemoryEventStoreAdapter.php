@@ -8,7 +8,7 @@ use BusFactor\EventStream\Envelope;
 use BusFactor\EventStream\Stream;
 use RuntimeException;
 
-class InMemoryEventStoreAdapter implements AdapterInterface
+final class InMemoryEventStoreAdapter implements AdapterInterface
 {
     private array $storage = [];
 

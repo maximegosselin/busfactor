@@ -8,7 +8,7 @@ use BusFactor\Scenario\UpdatedProjections;
 use PHPUnit\Framework\Constraint\Constraint;
 use ReflectionClass;
 
-class ProjectionsMustCount extends Constraint
+final class ProjectionsMustCount extends Constraint
 {
     private int $count;
 

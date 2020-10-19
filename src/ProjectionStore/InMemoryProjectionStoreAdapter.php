@@ -7,7 +7,7 @@ namespace BusFactor\ProjectionStore;
 use BusFactor\Projection\ProjectionInterface;
 use Generator;
 
-class InMemoryProjectionStoreAdapter implements AdapterInterface
+final class InMemoryProjectionStoreAdapter implements AdapterInterface
 {
     private array $projections;
 

@@ -6,7 +6,7 @@ namespace BusFactor\PdoAggregateStore;
 
 use InvalidArgumentException;
 
-class Config
+final class Config
 {
     private string $table = 'aggregate_store';
 

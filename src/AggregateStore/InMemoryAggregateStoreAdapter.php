@@ -6,7 +6,7 @@ namespace BusFactor\AggregateStore;
 
 use BusFactor\Aggregate\AggregateInterface;
 
-class InMemoryAggregateStoreAdapter implements AdapterInterface
+final class InMemoryAggregateStoreAdapter implements AdapterInterface
 {
     /** @var AggregateInterface[][] */
     private array $aggregates = [];

@@ -6,7 +6,7 @@ namespace BusFactor\EventStore;
 
 use BusFactor\EventStream\Stream;
 
-class EventStore implements EventStoreInterface
+final class EventStore implements EventStoreInterface
 {
     private AdapterInterface $adapter;
 

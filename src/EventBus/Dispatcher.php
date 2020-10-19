@@ -7,7 +7,7 @@ namespace BusFactor\EventBus;
 use BusFactor\EventStream\Envelope;
 use BusFactor\EventStream\Stream;
 
-class Dispatcher implements EventStreamPublisherInterface
+final class Dispatcher implements EventStreamPublisherInterface
 {
     /** @var EventHandlerInterface[][] */
     private array $subscribers = [];

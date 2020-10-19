@@ -8,7 +8,7 @@ use BusFactor\Scenario\PublishedStreams;
 use PHPUnit\Framework\Constraint\Constraint;
 use ReflectionClass;
 
-class StreamMustExist extends Constraint
+final class StreamMustExist extends Constraint
 {
     private string $streamId;
 

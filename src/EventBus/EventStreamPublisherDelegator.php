@@ -6,7 +6,7 @@ namespace BusFactor\EventBus;
 
 use BusFactor\EventStream\Stream;
 
-class EventStreamPublisherDelegator implements EventStreamPublisherInterface
+final class EventStreamPublisherDelegator implements EventStreamPublisherInterface
 {
     private MiddlewareInterface $middleware;
 

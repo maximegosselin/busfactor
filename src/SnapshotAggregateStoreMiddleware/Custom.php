@@ -6,7 +6,7 @@ namespace BusFactor\SnapshotAggregateStoreMiddleware;
 
 use BusFactor\Aggregate\AggregateInterface;
 
-class Custom implements StrategyInterface
+final class Custom implements StrategyInterface
 {
     /** @var callable */
     private $mustSnapshot;

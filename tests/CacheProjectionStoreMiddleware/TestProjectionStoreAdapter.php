@@ -5,13 +5,21 @@ declare(strict_types=1);
 namespace BusFactor\CacheProjectionStoreMiddleware;
 
 use BusFactor\Projection\ProjectionInterface;
+use BusFactor\ProjectionStore\AdapterInterface;
 use BusFactor\ProjectionStore\InMemoryProjectionStoreAdapter;
 use BusFactor\ProjectionStore\UnitOfWork;
 use Generator;
 
-class TestProjectionStoreAdapter extends InMemoryProjectionStoreAdapter
+class TestProjectionStoreAdapter implements AdapterInterface
 {
+    private InMemoryProjectionStoreAdapter $adapter;
+
     private int $hits = 0;
+
+    public function __construct()
+    {
+        $this->adapter = new InMemoryProjectionStoreAdapter();
+    }
 
     public function reset(): void
     {
@@ -26,30 +34,30 @@ class TestProjectionStoreAdapter extends InMemoryProjectionStoreAdapter
     public function find(string $id, string $class): ProjectionInterface
     {
         $this->hits++;
-        return parent::find($id, $class);
+        return $this->adapter->find($id, $class);
     }
 
     public function findBy(string $class): Generator
     {
         $this->hits++;
-        yield parent::findBy($class);
+        yield $this->adapter->findBy($class);
     }
 
     public function has(string $id, string $class): bool
     {
         $this->hits++;
-        return parent::has($id, $class);
+        return $this->adapter->has($id, $class);
     }
 
     public function commit(UnitOfWork $unit): void
     {
         $this->hits++;
-        parent::commit($unit);
+        $this->adapter->commit($unit);
     }
 
     public function purge(): void
     {
         $this->hits++;
-        parent::purge();
+        $this->adapter->purge();
     }
 }

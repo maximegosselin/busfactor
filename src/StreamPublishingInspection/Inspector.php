@@ -10,7 +10,7 @@ use BusFactor\EventStore\InspectorInterface;
 use BusFactor\EventStream\Envelope;
 use BusFactor\EventStream\Stream;
 
-class Inspector implements InspectorInterface
+final class Inspector implements InspectorInterface
 {
     private EventBusInterface $eventBus;
 

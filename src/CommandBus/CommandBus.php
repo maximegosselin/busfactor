@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BusFactor\CommandBus;
 
-class CommandBus implements CommandBusInterface
+final class CommandBus implements CommandBusInterface
 {
     private Router $router;
 

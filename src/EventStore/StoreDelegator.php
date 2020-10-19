@@ -6,7 +6,7 @@ namespace BusFactor\EventStore;
 
 use BusFactor\EventStream\Stream;
 
-class StoreDelegator implements EventStoreInterface
+final class StoreDelegator implements EventStoreInterface
 {
     private MiddlewareInterface $middleware;
 

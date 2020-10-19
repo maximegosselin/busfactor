@@ -10,7 +10,7 @@ use BusFactor\EventStore\MiddlewareInterface;
 use BusFactor\EventStream\Stream;
 use BusFactor\StreamEnricher\StreamEnricherInterface;
 
-class StreamEnricherEventStoreMiddleware implements MiddlewareInterface
+final class StreamEnricherEventStoreMiddleware implements MiddlewareInterface
 {
     private StreamEnricherInterface $enricher;
 

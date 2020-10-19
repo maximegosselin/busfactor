@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BusFactor\EventStream;
 
-class Stream
+final class Stream
 {
     private string $streamId;
 

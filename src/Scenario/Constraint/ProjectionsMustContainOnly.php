@@ -8,7 +8,7 @@ use BusFactor\Scenario\UpdatedProjections;
 use PHPUnit\Framework\Constraint\Constraint;
 use ReflectionClass;
 
-class ProjectionsMustContainOnly extends Constraint
+final class ProjectionsMustContainOnly extends Constraint
 {
     private string $projectionClass;
 

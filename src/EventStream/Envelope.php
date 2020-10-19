@@ -9,7 +9,7 @@ use DateTimeImmutable;
 use DateTimeInterface;
 use InvalidArgumentException;
 
-class Envelope
+final class Envelope
 {
     private StreamEventInterface $event;
 

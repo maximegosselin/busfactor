@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BusFactor\EventStore;
 
-class ConcurrencyException extends EventStoreException
+final class ConcurrencyException extends EventStoreException
 {
     public function getStatus(): int
     {

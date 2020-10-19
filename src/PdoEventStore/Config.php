@@ -6,7 +6,7 @@ namespace BusFactor\PdoEventStore;
 
 use InvalidArgumentException;
 
-class Config
+final class Config
 {
     private string $table = 'event_store';
 

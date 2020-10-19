@@ -6,7 +6,7 @@ namespace BusFactor\ProjectionStore;
 
 use BusFactor\Projection\ProjectionInterface;
 
-class TransactionalStore implements ProjectionStoreInterface
+final class TransactionalStore implements ProjectionStoreInterface
 {
     private AdapterInterface $adapter;
 

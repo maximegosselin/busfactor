@@ -8,7 +8,7 @@ use BusFactor\Pdo\PdoInterface;
 use PDO;
 use RuntimeException;
 
-class PdoProxy implements PdoInterface
+final class PdoProxy implements PdoInterface
 {
     /** @var callable */
     private $resolver;

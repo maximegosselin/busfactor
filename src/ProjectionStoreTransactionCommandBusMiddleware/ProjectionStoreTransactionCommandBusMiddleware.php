@@ -9,7 +9,7 @@ use BusFactor\CommandBus\MiddlewareInterface;
 use BusFactor\ProjectionStore\ProjectionStoreInterface;
 use Throwable;
 
-class ProjectionStoreTransactionCommandBusMiddleware implements MiddlewareInterface
+final class ProjectionStoreTransactionCommandBusMiddleware implements MiddlewareInterface
 {
     private ProjectionStoreInterface $projections;
 

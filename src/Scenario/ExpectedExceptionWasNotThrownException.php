@@ -6,6 +6,6 @@ namespace BusFactor\Scenario;
 
 use Exception;
 
-class ExpectedExceptionWasNotThrownException extends Exception
+final class ExpectedExceptionWasNotThrownException extends Exception
 {
 }

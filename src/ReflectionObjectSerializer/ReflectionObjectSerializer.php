@@ -9,7 +9,7 @@ use InvalidArgumentException;
 use ReflectionClass;
 use ReflectionObject;
 
-class ReflectionObjectSerializer implements AdapterInterface
+final class ReflectionObjectSerializer implements AdapterInterface
 {
     public function serialize(object $object): string
     {

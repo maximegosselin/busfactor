@@ -6,6 +6,6 @@ namespace BusFactor\PdoEventStore;
 
 use BusFactor\EventStore\EventStoreException;
 
-class JsonSerializationException extends EventStoreException
+final class JsonSerializationException extends EventStoreException
 {
 }

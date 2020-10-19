@@ -8,7 +8,7 @@ use BusFactor\EventStream\Envelope;
 use BusFactor\EventStream\Stream;
 use Countable;
 
-class PublishedStreams implements Countable
+final class PublishedStreams implements Countable
 {
     /** @var Stream[] */
     private array $streams;

@@ -7,7 +7,7 @@ namespace BusFactor\Aggregate;
 use DateTimeImmutable;
 use DateTimeInterface;
 
-class RecordedEvent
+final class RecordedEvent
 {
     private EventInterface $event;
 

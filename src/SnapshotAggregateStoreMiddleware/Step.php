@@ -6,7 +6,7 @@ namespace BusFactor\SnapshotAggregateStoreMiddleware;
 
 use BusFactor\Aggregate\AggregateInterface;
 
-class Step implements StrategyInterface
+final class Step implements StrategyInterface
 {
     private int $step;
 

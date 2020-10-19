@@ -7,7 +7,7 @@ namespace BusFactor\StreamPublishingInspection;
 use BusFactor\EventBus\EventBusInterface;
 use BusFactor\EventStore\AdapterInterface;
 
-class Inspection
+final class Inspection
 {
     private AdapterInterface $adapter;
 

@@ -19,7 +19,7 @@ use Exception;
 use PDO;
 use PDOException;
 
-class PdoEventStoreAdapter implements AdapterInterface
+final class PdoEventStoreAdapter implements AdapterInterface
 {
     private PdoInterface $pdo;
 

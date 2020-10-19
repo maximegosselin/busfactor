@@ -11,7 +11,7 @@ use BusFactor\ObjectSerializer\ObjectSerializerInterface;
 use BusFactor\Pdo\PdoInterface;
 use PDO;
 
-class PdoAggregateStoreAdapter implements AdapterInterface
+final class PdoAggregateStoreAdapter implements AdapterInterface
 {
     private PdoInterface $pdo;
 

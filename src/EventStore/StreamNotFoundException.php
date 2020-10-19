@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BusFactor\EventStore;
 
-class StreamNotFoundException extends EventStoreException
+final class StreamNotFoundException extends EventStoreException
 {
     public static function forId(string $streamId, string $streamType): self
     {

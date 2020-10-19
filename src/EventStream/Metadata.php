@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BusFactor\EventStream;
 
-class Metadata
+final class Metadata
 {
     private array $data = [];
 

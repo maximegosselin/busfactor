@@ -8,7 +8,7 @@ use BusFactor\Scenario\PublishedStreams;
 use PHPUnit\Framework\Constraint\Constraint;
 use ReflectionClass;
 
-class StreamsMustCount extends Constraint
+final class StreamsMustCount extends Constraint
 {
     private int $count;
 
