@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BusFactor\Scenario;
 
-use BusFactor\CommandBus\CommandBusInterface;
+use BusFactor\CommandDispatcher\DispatcherInterface;
 use BusFactor\EventBus\EventBusInterface;
 use BusFactor\EventStore\EventStoreInterface;
 use BusFactor\EventStream\Stream;
@@ -111,7 +111,7 @@ final class Play
         EventBusInterface $eventBus,
         EventBusTraceMiddleware $eventBusTrace,
         EventStoreInterface $eventStore,
-        CommandBusInterface $commandBus,
+        DispatcherInterface $dispatcher,
         ProjectionStoreTraceMiddleware $projectionTrace
     ): void {
         $catchedExceptions = [];
@@ -125,7 +125,7 @@ final class Play
             $eventBus->publish($this->evaluate($stream));
         }
         foreach ($this->initialCommands as $command) {
-            $commandBus->dispatch($this->evaluate($command));
+            $dispatcher->dispatch($this->evaluate($command));
         }
 
         $eventBusTrace->startTracing();
@@ -134,7 +134,7 @@ final class Play
         /* Commands and actions */
         foreach ($this->commands as $command) {
             try {
-                $commandBus->dispatch($this->evaluate($command));
+                $dispatcher->dispatch($this->evaluate($command));
             } catch (Exception $e) {
                 if ($this->expectedException && ($e instanceof $this->expectedException)) {
                     $expectedExceptionThrown = true;

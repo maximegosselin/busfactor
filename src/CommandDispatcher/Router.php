@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\CommandBus;
+namespace BusFactor\CommandDispatcher;
 
-final class Router implements CommandDispatcherInterface
+final class Router implements DispatcherInterface
 {
-    /** @var CommandHandlerInterface[] */
+    /** @var HandlerInterface[] */
     private array $map;
 
     public function dispatch(object $command): void
@@ -16,7 +16,7 @@ final class Router implements CommandDispatcherInterface
         }
     }
 
-    public function registerHandler(string $commandClass, CommandHandlerInterface $handler): void
+    public function registerHandler(string $commandClass, HandlerInterface $handler): void
     {
         $this->map[$commandClass] = $handler;
     }

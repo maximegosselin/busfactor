@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace BusFactor\Scenario;
 
-use BusFactor\CommandBus\CommandBus;
-use BusFactor\CommandBus\CommandBusInterface;
+use BusFactor\CommandDispatcher\Dispatcher;
+use BusFactor\CommandDispatcher\DispatcherInterface;
 use BusFactor\EventBus\EventBus;
 use BusFactor\EventStore\EventStore;
 use BusFactor\EventStore\EventStoreInterface;
@@ -17,7 +17,7 @@ final class Scenario
 {
     private EventBus $eventBus;
 
-    private CommandBusInterface $commandBus;
+    private DispatcherInterface $dispatcher;
 
     private EventStoreInterface $eventStore;
 
@@ -27,12 +27,12 @@ final class Scenario
 
     public function __construct(
         ?EventBus $eventBus = null,
-        ?CommandBusInterface $commandBus = null,
+        ?DispatcherInterface $dispatcher = null,
         ?ProjectionStore $projectionStore = null,
         ?EventStoreInterface $eventStore = null
     ) {
         $this->eventBus = $eventBus ?? new EventBus();
-        $this->commandBus = $commandBus ?? new CommandBus();
+        $this->dispatcher = $dispatcher ?? new Dispatcher();
         $this->eventStore = $eventStore ?? new EventStore(new InMemoryEventStoreAdapter());
         $this->eventBusTrace = new EventBusTraceMiddleware();
         $this->eventBus->addMiddleware($this->eventBusTrace);
@@ -47,7 +47,7 @@ final class Scenario
                 $this->eventBus,
                 $this->eventBusTrace,
                 $this->eventStore,
-                $this->commandBus,
+                $this->dispatcher,
                 $this->projectionStoreTrace
             );
         }

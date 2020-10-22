@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\PdoTransactionCommandBusMiddleware;
+namespace BusFactor\PdoTransactionCommandDispatcherMiddleware;
 
-use BusFactor\CommandBus\CommandDispatcherInterface;
-use BusFactor\CommandBus\MiddlewareInterface;
+use BusFactor\CommandDispatcher\DispatcherInterface;
+use BusFactor\CommandDispatcher\MiddlewareInterface;
 use BusFactor\Pdo\PdoInterface;
 use RuntimeException;
 use Throwable;
 
-final class PdoTransactionCommandBusMiddleware implements MiddlewareInterface
+final class PdoTransactionCommandDispatcherMiddleware implements MiddlewareInterface
 {
     private PdoInterface $pdo;
 
@@ -29,7 +29,7 @@ final class PdoTransactionCommandBusMiddleware implements MiddlewareInterface
         $this->safeExceptions = $safeExceptions;
     }
 
-    public function dispatch(object $command, CommandDispatcherInterface $next): void
+    public function dispatch(object $command, DispatcherInterface $next): void
     {
         $this->nestedLevels++;
         if ($this->nestedLevels === 1) {

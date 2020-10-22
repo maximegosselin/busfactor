@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\CommandBus;
+namespace BusFactor\CommandDispatcher;
 
 use PHPUnit\Framework\TestCase;
 
@@ -16,7 +16,7 @@ class MiddlewareTest extends TestCase
         $mw2 = new TestMiddleware('mw2', $output);
         $mw3 = new TestMiddleware('mw3', $output);
 
-        $bus = new CommandBus();
+        $bus = new Dispatcher();
         $bus->addMiddleware($mw1);
         $bus->addMiddleware($mw2);
         $bus->addMiddleware($mw3);

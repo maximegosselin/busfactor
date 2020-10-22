@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\CommandBus;
+namespace BusFactor\CommandDispatcher;
 
-final class CommandBus implements CommandBusInterface
+final class Dispatcher implements DispatcherInterface
 {
     private Router $router;
 
     /** @var MiddlewareInterface[] */
     private array $middlewares = [];
 
-    private ?CommandDispatcherInterface $chain = null;
+    private ?DispatcherInterface $chain = null;
 
     public function __construct()
     {
@@ -40,7 +40,7 @@ final class CommandBus implements CommandBusInterface
         return $this->middlewares;
     }
 
-    public function registerHandler(string $commandClass, CommandHandlerInterface $handler): void
+    public function registerHandler(string $commandClass, HandlerInterface $handler): void
     {
         $this->router->registerHandler($commandClass, $handler);
     }
@@ -49,8 +49,8 @@ final class CommandBus implements CommandBusInterface
     {
         $this->chain = array_reduce(
             $this->middlewares,
-            function (CommandDispatcherInterface $carry, MiddlewareInterface $item): CommandDispatcherInterface {
-                return new CommandDispatcherDelegator($item, $carry);
+            function (DispatcherInterface $carry, MiddlewareInterface $item): DispatcherInterface {
+                return new DispatcherDelegator($item, $carry);
             },
             $this->router
         );

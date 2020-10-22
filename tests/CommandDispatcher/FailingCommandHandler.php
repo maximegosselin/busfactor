@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\CommandBus;
+namespace BusFactor\CommandDispatcher;
 
-class FailingCommandHandler implements CommandHandlerInterface
+class FailingCommandHandler implements HandlerInterface
 {
-    use CommandHandlerTrait;
+    use HandleCommandTrait;
 
     public static function getHandledCommandClasses(): array
     {

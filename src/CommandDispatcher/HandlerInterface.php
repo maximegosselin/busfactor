@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\CommandBus;
+namespace BusFactor\CommandDispatcher;
 
-interface CommandHandlerInterface
+interface HandlerInterface
 {
     public function handle(object $command): void;
 }

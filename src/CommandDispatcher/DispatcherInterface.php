@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\CommandBus;
+namespace BusFactor\CommandDispatcher;
 
-interface CommandDispatcherInterface
+interface DispatcherInterface
 {
     public function dispatch(object $command): void;
 }

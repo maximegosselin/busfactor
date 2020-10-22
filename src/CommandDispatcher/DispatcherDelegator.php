@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\CommandBus;
+namespace BusFactor\CommandDispatcher;
 
-final class CommandDispatcherDelegator implements CommandDispatcherInterface
+final class DispatcherDelegator implements DispatcherInterface
 {
     private MiddlewareInterface $middleware;
 
-    private ?CommandDispatcherInterface $next;
+    private ?DispatcherInterface $next;
 
-    public function __construct(MiddlewareInterface $middleware, ?CommandDispatcherInterface $next = null)
+    public function __construct(MiddlewareInterface $middleware, ?DispatcherInterface $next = null)
     {
         $this->middleware = $middleware;
         $this->next = $next;

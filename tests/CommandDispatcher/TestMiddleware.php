@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\CommandBus;
+namespace BusFactor\CommandDispatcher;
 
 class TestMiddleware implements MiddlewareInterface
 {
@@ -16,7 +16,7 @@ class TestMiddleware implements MiddlewareInterface
         $this->output = &$output;
     }
 
-    public function dispatch(object $command, CommandDispatcherInterface $next): void
+    public function dispatch(object $command, DispatcherInterface $next): void
     {
         $this->output[] = 'before ' . $this->name;
         $next->dispatch($command);

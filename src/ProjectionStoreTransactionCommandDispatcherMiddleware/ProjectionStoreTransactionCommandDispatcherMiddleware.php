@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\ProjectionStoreTransactionCommandBusMiddleware;
+namespace BusFactor\ProjectionStoreTransactionCommandDispatcherMiddleware;
 
-use BusFactor\CommandBus\CommandDispatcherInterface;
-use BusFactor\CommandBus\MiddlewareInterface;
+use BusFactor\CommandDispatcher\DispatcherInterface;
+use BusFactor\CommandDispatcher\MiddlewareInterface;
 use BusFactor\ProjectionStore\ProjectionStoreInterface;
 use Throwable;
 
-final class ProjectionStoreTransactionCommandBusMiddleware implements MiddlewareInterface
+final class ProjectionStoreTransactionCommandDispatcherMiddleware implements MiddlewareInterface
 {
     private ProjectionStoreInterface $projections;
 
@@ -21,7 +21,7 @@ final class ProjectionStoreTransactionCommandBusMiddleware implements Middleware
         $this->nestedLevels = 0;
     }
 
-    public function dispatch(object $command, CommandDispatcherInterface $next): void
+    public function dispatch(object $command, DispatcherInterface $next): void
     {
         try {
             $this->nestedLevels++;

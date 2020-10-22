@@ -7,7 +7,7 @@
 - Requirements
 - Disclaimer
 - Building Blocks
-    - [The Command Bus](command-bus.md)
+    - [The Command Dispatcher](command-dispatcher.md)
     - Aggregate Modeling
     - The Event Bus
     - Projections
@@ -19,7 +19,7 @@
 | `AggregateStore` | Persistence for aggregates. | 
 | `Aggregate` | Interfaces and traits for plain DDD aggregates and domain events. | 
 | `CacheProjectionStoreMiddleware` | Caching middleware for `ProjectionStore`. | 
-| `CommandBus` | Implementation of the Command Bus pattern. | 
+| `CommandDispatcher` | Implementation of the Command Dispatcher pattern. | 
 | `EventBus` | Implementation of the Publish-Subscribe pattern for event streams. | 
 | `EventSourcedAggregateStore` | `AggregateStore` adapter for event-sourced aggregates persistence. | 
 | `EventSourcedAggregate` | Interface and trait for event-sourced aggregates. | 
@@ -33,9 +33,9 @@
 | `PdoEventStore` | PDO adapter for `EventStore`. | 
 | `PdoProjectionStore` | PDO adapter for `ProjectionStore`. | 
 | `PdoProxy` | Lazy-connecting PDO proxy. | 
-| `PdoTransactionCommandBusMiddleware` | Wrap command dispatch process in a PDO transaction. | 
+| `PdoTransactionCommandDispatcherMiddleware` | Wrap command dispatch process in a PDO transaction. | 
 | `Pdo` | Decorating interface for PHP Data Objects (PDO). | 
-| `ProjectionStoreTransactionCommandBusMiddleware` | `ProjectionStore` automatic commit. | 
+| `ProjectionStoreTransactionCommandDispatcherMiddleware` | `ProjectionStore` automatic commit. | 
 | `ProjectionStore` | Persistence for projections. | 
 | `Projection` | Interface for projections. | 
 | `ReflectionObjectSerializer` | Reflection-based adapter for `ObjectSerializer`. | 

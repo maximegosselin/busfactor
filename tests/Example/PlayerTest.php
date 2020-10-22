@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BusFactor\Example;
 
-use BusFactor\CommandBus\CommandBus;
+use BusFactor\CommandDispatcher\Dispatcher;
 use BusFactor\EventBus\EventBus;
 use BusFactor\EventStore\EventStore;
 use BusFactor\EventStore\InMemoryEventStoreAdapter;
@@ -34,7 +34,7 @@ class PlayerTest extends TestCase
         parent::setUp();
 
         $eventBus = new EventBus();
-        $commandBus = new CommandBus();
+        $dispatcher = new Dispatcher();
         $eventStore = new EventStore(new InMemoryEventStoreAdapter());
         $projectionStore = new ProjectionStore(new InMemoryProjectionStoreAdapter());
         $playerRepository = new PlayerRepository($eventStore, $eventBus);
@@ -42,13 +42,13 @@ class PlayerTest extends TestCase
         $playerListProjector = new PlayerListProjector($projectionStore);
 
         foreach ($playerCommandHandler::getHandledCommandClasses() as $commandClass) {
-            $commandBus->registerHandler($commandClass, $playerCommandHandler);
+            $dispatcher->registerHandler($commandClass, $playerCommandHandler);
         }
         foreach ($playerListProjector::getSubscribedEventClasses() as $eventClass) {
             $eventBus->subscribe($eventClass, $playerListProjector);
         }
 
-        $this->scenario = new Scenario($eventBus, $commandBus, $projectionStore);
+        $this->scenario = new Scenario($eventBus, $dispatcher, $projectionStore);
     }
 
     public function testPlayerRegistration(): void

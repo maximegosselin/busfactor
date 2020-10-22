@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace BusFactor\Example\Command;
 
-use BusFactor\CommandBus\CommandHandlerInterface;
-use BusFactor\CommandBus\CommandHandlerTrait;
+use BusFactor\CommandDispatcher\HandleCommandTrait;
+use BusFactor\CommandDispatcher\HandlerInterface;
 use BusFactor\Example\Aggregate\Player;
 use BusFactor\Example\Aggregate\PlayerRepository;
 
-class PlayerCommandHandler implements CommandHandlerInterface
+class PlayerCommandHandler implements HandlerInterface
 {
-    use CommandHandlerTrait;
+    use HandleCommandTrait;
 
     private PlayerRepository $players;
 
