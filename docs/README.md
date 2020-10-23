@@ -6,7 +6,7 @@
 - Installation
 - Requirements
 - Disclaimer
-- Building Blocks
+- Guides
     - [The Command Dispatcher](command-dispatcher.md)
     - Aggregate Modeling
     - The Event Bus
