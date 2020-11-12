@@ -6,13 +6,7 @@ namespace BusFactor\Aggregate;
 
 class TestAggregate implements AggregateInterface
 {
-    use AggregateRootTrait {
-        AggregateRootTrait::apply as aggregateRootTraitApply;
-    }
-
-    private TestAggregateEntity $entity1;
-
-    private TestAggregateEntity $entity2;
+    use AggregateRootTrait;
 
     public static function getType(): string
     {
@@ -21,29 +15,11 @@ class TestAggregate implements AggregateInterface
 
     public static function create(string $id): self
     {
-        $me = new static($id);
-
-        $me->entity1 = new TestAggregateEntity();
-        $me->attachChildEntity($me->entity1);
-
-        $me->entity2 = new TestAggregateEntity();
-        $me->attachChildEntity($me->entity2);
-
-        return $me;
+        return new static($id);
     }
 
     public function action(): void
     {
         $this->apply(new TestEvent());
-    }
-
-    public function getEntity1(): TestAggregateEntity
-    {
-        return $this->entity1;
-    }
-
-    public function getEntity2(): TestAggregateEntity
-    {
-        return $this->entity2;
     }
 }

@@ -6,8 +6,6 @@ namespace BusFactor\Aggregate;
 
 trait AggregateRootTrait
 {
-    use AggregateEntityTrait;
-
     private string $aggregateRootTrait_aggregateId;
 
     private int $aggregateRootTrait_version = 0;
@@ -18,6 +16,15 @@ trait AggregateRootTrait
     public function __construct(string $aggregateId)
     {
         $this->aggregateRootTrait_aggregateId = $aggregateId;
+    }
+
+    private function __handle(RecordedEvent $recordedEvent): void
+    {
+        $parts = explode('\\', get_class($recordedEvent->getEvent()));
+        $method = 'apply' . end($parts);
+        if (method_exists($this, $method)) {
+            $this->$method($recordedEvent->getEvent(), $recordedEvent);
+        }
     }
 
     public function getAggregateId(): string
