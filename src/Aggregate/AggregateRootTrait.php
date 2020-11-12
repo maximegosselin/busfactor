@@ -6,16 +6,16 @@ namespace BusFactor\Aggregate;
 
 trait AggregateRootTrait
 {
-    private string $aggregateRootTrait_aggregateId;
+    private string $_aggregateId;
 
-    private int $aggregateRootTrait_version = 0;
+    private int $_version = 0;
 
     /** @var RecordedEvent[] */
-    private array $aggregateRootTrait_newEvents = [];
+    private array $_newEvents = [];
 
     public function __construct(string $aggregateId)
     {
-        $this->aggregateRootTrait_aggregateId = $aggregateId;
+        $this->_aggregateId = $aggregateId;
     }
 
     private function __handle(RecordedEvent $recordedEvent): void
@@ -29,31 +29,31 @@ trait AggregateRootTrait
 
     public function getAggregateId(): string
     {
-        return $this->aggregateRootTrait_aggregateId;
+        return $this->_aggregateId;
     }
 
     public function getVersion(): int
     {
-        return $this->aggregateRootTrait_version;
+        return $this->_version;
     }
 
     public function pullNewEvents(): array
     {
         $recordedEvents = $this->peekNewEvents();
-        $this->aggregateRootTrait_newEvents = [];
+        $this->_newEvents = [];
         return $recordedEvents;
     }
 
     public function peekNewEvents(): array
     {
-        return $this->aggregateRootTrait_newEvents;
+        return $this->_newEvents;
     }
 
     private function apply(EventInterface $event): void
     {
-        $this->aggregateRootTrait_version++;
-        $recordedEvent = new RecordedEvent($event, $this->aggregateRootTrait_version);
+        $this->_version++;
+        $recordedEvent = new RecordedEvent($event, $this->_version);
         $this->__handle($recordedEvent);
-        $this->aggregateRootTrait_newEvents[] = $recordedEvent;
+        $this->_newEvents[] = $recordedEvent;
     }
 }

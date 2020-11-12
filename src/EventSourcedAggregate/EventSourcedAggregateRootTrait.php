@@ -15,7 +15,7 @@ trait EventSourcedAggregateRootTrait
     public function replayStream(Stream $stream): void
     {
         foreach ($stream->getEnvelopes() as $envelope) {
-            $this->aggregateRootTrait_version++;
+            $this->_version++;
             $this->__handle(
                 (new RecordedEvent($envelope->getEvent(), $envelope->getVersion()))
                     ->withRecordTime($envelope->getRecordTime())
