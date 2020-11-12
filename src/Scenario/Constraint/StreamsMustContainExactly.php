@@ -38,8 +38,8 @@ final class StreamsMustContainExactly extends Constraint
     {
         $this->found = 0;
         foreach ($publishedStreams->getAll() as $stream) {
-            foreach ($stream->getEnvelopes() as $envelope) {
-                if (get_class($envelope->getEvent()) === $this->eventClass) {
+            foreach ($stream->getRecordedEvents() as $recordedEvent) {
+                if (get_class($recordedEvent->getEvent()) === $this->eventClass) {
                     $this->found++;
                 }
             }

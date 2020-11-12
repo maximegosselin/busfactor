@@ -7,8 +7,6 @@ namespace BusFactor\StreamPublishingInspection;
 use BusFactor\EventBus\EventBusInterface;
 use BusFactor\EventStore\Filter;
 use BusFactor\EventStore\InspectorInterface;
-use BusFactor\EventStream\Envelope;
-use BusFactor\EventStream\Stream;
 
 final class Inspector implements InspectorInterface
 {
@@ -32,18 +30,18 @@ final class Inspector implements InspectorInterface
         return new Filter();
     }
 
-    public function inspect(string $aggregateId, string $streamType, Envelope $envelope): void
+    public function inspect(string $aggregateId, string $streamType, RecordedEvent $recordedEvent): void
     {
         $stream = new Stream($aggregateId, $streamType);
-        $stream = $stream->withEnvelope($envelope);
+        $stream = $stream->withRecordedEvent($recordedEvent);
         if ($this->before) {
             $before = $this->before;
-            $before($aggregateId, $envelope);
+            $before($aggregateId, $recordedEvent);
         }
         $this->eventBus->publish($stream);
         if ($this->after) {
             $after = $this->after;
-            $after($aggregateId, $envelope);
+            $after($aggregateId, $recordedEvent);
         }
     }
 }

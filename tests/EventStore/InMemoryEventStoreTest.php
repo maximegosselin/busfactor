@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace BusFactor\EventStore;
 
-use BusFactor\EventStream\Envelope;
-use BusFactor\EventStream\Metadata;
-use BusFactor\EventStream\Stream;
+use BusFactor\Aggregate\Metadata;
+use BusFactor\Aggregate\RecordedEvent;
+use BusFactor\Aggregate\Stream;
 use PHPUnit\Framework\TestCase;
 
 class InMemoryEventStoreTest extends TestCase
@@ -20,15 +20,15 @@ class InMemoryEventStoreTest extends TestCase
 
         $store->append(
             (new Stream('123', 'type'))
-                ->withEnvelope(Envelope::createNow(new TestEvent(), new Metadata(), 1))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 1))
         );
 
         $this->assertTrue($store->streamExists('123', 'type'));
 
         $store->append(
             (new Stream('123', 'type'))
-                ->withEnvelope(Envelope::createNow(new TestEvent(), new Metadata(), 2))
-                ->withEnvelope(Envelope::createNow(new TestEvent(), new Metadata(), 3))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 2))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 3))
         );
 
         $stream = $store->fetch('123', 'type');
@@ -82,7 +82,7 @@ class InMemoryEventStoreTest extends TestCase
         $expectedInspectedEvents = array_reduce(
             $appendedEventStreams,
             function (array $carry, Stream $item) {
-                $carry[] = $item->getEnvelopes()[0];
+                $carry[] = $item->getRecordedEvents()[0];
                 return $carry;
             },
             []
@@ -101,8 +101,8 @@ class InMemoryEventStoreTest extends TestCase
 
     private function createStreamWithOneEvent(string $streamId, int $version): Stream
     {
-        return (new Stream($streamId, 'test'))->withEnvelope(
-            Envelope::createNow(new TestEvent(), new Metadata(), $version)
+        return (new Stream($streamId, 'test'))->withRecordedEvent(
+            RecordedEvent::createNow(new TestEvent(), new Metadata(), $version)
         );
     }
 }

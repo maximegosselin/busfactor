@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace BusFactor\EventBus;
 
-use BusFactor\EventStream\Envelope;
-use BusFactor\EventStream\Metadata;
-use BusFactor\EventStream\Stream;
+use BusFactor\Aggregate\Metadata;
+use BusFactor\Aggregate\RecordedEvent;
+use BusFactor\Aggregate\Stream;
 use PHPUnit\Framework\TestCase;
 
 class EventHandlingTest extends TestCase
@@ -22,8 +22,8 @@ class EventHandlingTest extends TestCase
         $bus->subscribe(TestEvent2::class, $handler2);
 
         $stream = (new Stream('123', 'type'))
-            ->withEnvelope(Envelope::createNow(new TestEvent1(), new Metadata(), 1))
-            ->withEnvelope(Envelope::createNow(new TestEvent2(), new Metadata(), 2));
+            ->withRecordedEvent(RecordedEvent::createNow(new TestEvent1(), new Metadata(), 1))
+            ->withRecordedEvent(RecordedEvent::createNow(new TestEvent2(), new Metadata(), 2));
 
         $this->assertEmpty($handler1->getHandledEvents());
         $this->assertEmpty($handler2->getHandledEvents());

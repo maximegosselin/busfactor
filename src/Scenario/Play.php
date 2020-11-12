@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace BusFactor\Scenario;
 
+use BusFactor\Aggregate\Stream;
 use BusFactor\CommandDispatcher\DispatcherInterface;
 use BusFactor\EventBus\EventBusInterface;
 use BusFactor\EventStore\EventStoreInterface;
-use BusFactor\EventStream\Stream;
 use Exception;
 use InvalidArgumentException;
 

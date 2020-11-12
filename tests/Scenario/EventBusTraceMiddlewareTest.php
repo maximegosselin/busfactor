@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace BusFactor\Scenario;
 
+use BusFactor\Aggregate\Stream;
 use BusFactor\EventBus\EventBus;
-use BusFactor\EventStream\Stream;
 use PHPUnit\Framework\TestCase;
 
 class EventBusTraceMiddlewareTest extends TestCase

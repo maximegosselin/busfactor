@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace BusFactor\EventStore;
 
-use BusFactor\EventStream\Envelope;
+use BusFactor\Aggregate\RecordedEvent;
 
 class TestInspector implements InspectorInterface
 {
-    /** @var Envelope[] */
+    /** @var RecordedEvent[] */
     private array $inspectedEvents = [];
 
     public function getFilter(): Filter
@@ -16,7 +16,7 @@ class TestInspector implements InspectorInterface
         return new Filter();
     }
 
-    public function inspect(string $streamId, string $streamType, Envelope $envelope): void
+    public function inspect(string $streamId, string $streamType, RecordedEvent $envelope): void
     {
         $this->inspectedEvents[] = $envelope;
     }

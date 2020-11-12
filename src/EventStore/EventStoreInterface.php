@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BusFactor\EventStore;
 
-use BusFactor\EventStream\Stream;
+use BusFactor\Aggregate\Stream;
 
 interface EventStoreInterface
 {

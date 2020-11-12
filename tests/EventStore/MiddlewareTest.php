@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace BusFactor\EventStore;
 
-use BusFactor\EventStream\Envelope;
-use BusFactor\EventStream\Metadata;
-use BusFactor\EventStream\Stream;
+use BusFactor\Aggregate\Metadata;
+use BusFactor\Aggregate\RecordedEvent;
+use BusFactor\Aggregate\Stream;
 use PHPUnit\Framework\TestCase;
 
 class MiddlewareTest extends TestCase
@@ -16,7 +16,7 @@ class MiddlewareTest extends TestCase
     {
         $store = new EventStore(new InMemoryEventStoreAdapter());
         $stream = (new Stream('123', 'type'))
-            ->withEnvelope(Envelope::createNow(new TestEvent(), new Metadata(), 1));
+            ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 1));
         $store->append($stream);
 
         $output = [];
@@ -58,7 +58,7 @@ class MiddlewareTest extends TestCase
         $output = [];
 
         $stream = (new Stream('123', 'type'))
-            ->withEnvelope(Envelope::createNow(new TestEvent(), new Metadata(), 2));
+            ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 2));
         $store->append($stream);
         $this->assertEquals($output, [
             'before append mw3',

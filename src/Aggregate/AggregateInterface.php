@@ -12,9 +12,9 @@ interface AggregateInterface
 
     public function getVersion(): int;
 
-    /** @return RecordedEvent[] */
-    public function peekNewEvents(): array;
+    public function peekNewEvents(): Stream;
 
-    /** @return RecordedEvent[] */
-    public function pullNewEvents(): array;
+    public function pullNewEvents(): Stream;
+
+    public function replayStream(Stream $stream): void;
 }

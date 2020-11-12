@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\EventStream;
+namespace BusFactor\Aggregate;
 
 final class Stream
 {
@@ -10,8 +10,8 @@ final class Stream
 
     private string $streamType;
 
-    /** @var Envelope[] */
-    private array $envelopes = [];
+    /** @var RecordedEvent[] */
+    private array $recordedEvents = [];
 
     private int $lowestVersion = 0;
 
@@ -33,32 +33,31 @@ final class Stream
         return $this->streamType;
     }
 
-    public function withEnvelope(Envelope $envelope): self
+    public function withRecordedEvent(RecordedEvent $recordedEvent): self
     {
         $clone = clone $this;
-        $clone->envelopes[] = $envelope;
-        usort($clone->envelopes, function (Envelope $a, Envelope $b) {
+        $clone->recordedEvents[] = $recordedEvent;
+        usort($clone->recordedEvents, function (RecordedEvent $a, RecordedEvent $b) {
             return $a->getVersion() <=> $b->getVersion();
         });
 
         if ($clone->highestVersion == 0) {
-            $clone->highestVersion = $envelope->getVersion();
-        } elseif ($envelope->getVersion() > $clone->highestVersion) {
-            $clone->highestVersion = $envelope->getVersion();
+            $clone->highestVersion = $recordedEvent->getVersion();
+        } elseif ($recordedEvent->getVersion() > $clone->highestVersion) {
+            $clone->highestVersion = $recordedEvent->getVersion();
         }
         if ($clone->lowestVersion == 0) {
-            $clone->lowestVersion = $envelope->getVersion();
-        } elseif ($envelope->getVersion() < $clone->lowestVersion) {
-            $clone->lowestVersion = $envelope->getVersion();
+            $clone->lowestVersion = $recordedEvent->getVersion();
+        } elseif ($recordedEvent->getVersion() < $clone->lowestVersion) {
+            $clone->lowestVersion = $recordedEvent->getVersion();
         }
-
         return $clone;
     }
 
-    /** @return Envelope[] */
-    public function getEnvelopes(): array
+    /** @return RecordedEvent[] */
+    public function getRecordedEvents(): array
     {
-        return $this->envelopes;
+        return $this->recordedEvents;
     }
 
     public function getLowestVersion(): int

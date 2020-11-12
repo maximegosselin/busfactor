@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace BusFactor\StreamEnricherEventBusMiddleware;
 
+use BusFactor\Aggregate\Stream;
 use BusFactor\EventBus\EventStreamPublisherInterface;
 use BusFactor\EventBus\MiddlewareInterface;
-use BusFactor\EventStream\Stream;
 use BusFactor\StreamEnricher\StreamEnricherInterface;
 
 final class StreamEnricherEventBusMiddleware implements MiddlewareInterface

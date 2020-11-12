@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace BusFactor\PdoEventStore;
 
+use BusFactor\Aggregate\Metadata;
+use BusFactor\Aggregate\RecordedEvent;
+use BusFactor\Aggregate\Stream;
 use BusFactor\EventStore\EventStore;
-use BusFactor\EventStream\Envelope;
-use BusFactor\EventStream\Metadata;
-use BusFactor\EventStream\Stream;
 use BusFactor\Pdo\PdoInterface;
 use BusFactor\PdoProxy\PdoProxy;
 use PDO;
@@ -47,15 +47,15 @@ class PdoEventStoreTest extends TestCase
 
         $store->append(
             (new Stream('123', 'type'))
-                ->withEnvelope(Envelope::createNow(new TestEvent(), new Metadata(), 1))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 1))
         );
 
         $this->assertTrue($store->streamExists('123', 'type'));
 
         $store->append(
             (new Stream('123', 'type'))
-                ->withEnvelope(Envelope::createNow(new TestEvent(), new Metadata(), 2))
-                ->withEnvelope(Envelope::createNow(new TestEvent(), new Metadata(), 3))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 2))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 3))
         );
 
         $stream = $store->fetch('123', 'type');
@@ -80,9 +80,9 @@ class PdoEventStoreTest extends TestCase
 
         $store->append(
             (new Stream('123', 'type'))
-                ->withEnvelope(Envelope::createNow(new TestEvent(), new Metadata(), 1))
-                ->withEnvelope(Envelope::createNow(new TestEvent(), new Metadata(), 2))
-                ->withEnvelope(Envelope::createNow(new TestEvent(), new Metadata(), 3))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 1))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 2))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 3))
         );
 
         $inspector = new TestInspector();

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace BusFactor\Scenario;
 
-use BusFactor\EventStream\Envelope;
-use BusFactor\EventStream\Metadata;
-use BusFactor\EventStream\Stream;
+use BusFactor\Aggregate\Metadata;
+use BusFactor\Aggregate\RecordedEvent;
+use BusFactor\Aggregate\Stream;
 use PHPUnit\Framework\TestCase;
 
 class PublishedStreamsTest extends TestCase
@@ -40,14 +40,14 @@ class PublishedStreamsTest extends TestCase
     {
         return [
             (new Stream('123', 'type'))
-                ->withEnvelope(Envelope::createNow(new TestEvent1(), new Metadata(), 1))
-                ->withEnvelope(Envelope::createNow(new TestEvent2(), new Metadata(), 2))
-                ->withEnvelope(Envelope::createNow(new TestEvent1(), new Metadata(), 3))
-                ->withEnvelope(Envelope::createNow(new TestEvent1(), new Metadata(), 4)),
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent1(), new Metadata(), 1))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent2(), new Metadata(), 2))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent1(), new Metadata(), 3))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent1(), new Metadata(), 4)),
             (new Stream('234', 'type'))
-                ->withEnvelope(Envelope::createNow(new TestEvent2(), new Metadata(), 1))
-                ->withEnvelope(Envelope::createNow(new TestEvent1(), new Metadata(), 2))
-                ->withEnvelope(Envelope::createNow(new TestEvent2(), new Metadata(), 3)),
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent2(), new Metadata(), 1))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent1(), new Metadata(), 2))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent2(), new Metadata(), 3)),
         ];
     }
 }

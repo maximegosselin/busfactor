@@ -2,30 +2,29 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\EventSourcedAggregateStore;
+namespace BusFactor\EventSourcingAggregateStore;
 
+use BusFactor\Aggregate\AggregateFactory;
 use BusFactor\Aggregate\AggregateInterface;
+use BusFactor\Aggregate\Stream;
 use BusFactor\AggregateStore\AdapterInterface;
 use BusFactor\AggregateStore\AggregateNotFoundException;
 use BusFactor\EventBus\EventBusInterface;
-use BusFactor\EventSourcedAggregate\EventSourcedAggregateInterface;
 use BusFactor\EventStore\EventStoreInterface;
 use BusFactor\EventStore\StreamNotFoundException;
-use BusFactor\EventStream\Envelope;
-use BusFactor\EventStream\Stream;
 use InvalidArgumentException;
 use RuntimeException;
 
-final class EventSourcedAggregateStoreAdapter implements AdapterInterface
+final class EventSourcingAggregateStoreAdapter implements AdapterInterface
 {
-    private EventSourcedAggregateFactory $aggregateFactory;
+    private AggregateFactory $aggregateFactory;
 
     private EventStoreInterface $eventStore;
 
     private EventBusInterface $eventBus;
 
     public function __construct(
-        EventSourcedAggregateFactory $aggregateFactory,
+        AggregateFactory $aggregateFactory,
         EventStoreInterface $eventStore,
         EventBusInterface $eventBus
     ) {
@@ -45,7 +44,7 @@ final class EventSourcedAggregateStoreAdapter implements AdapterInterface
             throw AggregateNotFoundException::forAggregate($aggregateId, $aggregateType, $e);
         }
         $class = $this->aggregateFactory->getAggregateRootClass();
-        /** @var EventSourcedAggregateInterface $aggregate */
+        /** @var AggregateInterface $aggregate */
         $aggregate = new $class($stream->getStreamId());
         $aggregate->replayStream($stream);
 
@@ -62,7 +61,7 @@ final class EventSourcedAggregateStoreAdapter implements AdapterInterface
         $stream = new Stream($aggregate->getAggregateId(), $aggregate::getType());
         $recordedEvents = $aggregate->pullNewEvents();
         foreach ($recordedEvents as $recordedEvent) {
-            $stream = $stream->withEnvelope(Envelope::fromRecordedEvent($recordedEvent));
+            $stream = $stream->withRecordedEvent($recordedEvent);
         }
         $this->eventStore->append($stream);
         $this->eventBus->publish($stream);

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace BusFactor\PdoEventStore;
 
+use BusFactor\Aggregate\RecordedEvent;
+use BusFactor\Aggregate\Stream;
 use BusFactor\EventStore\AdapterInterface;
 use BusFactor\EventStore\ConcurrencyException;
 use BusFactor\EventStore\InspectorInterface;
 use BusFactor\EventStore\StreamNotFoundException;
-use BusFactor\EventStream\Envelope;
 use BusFactor\EventStream\Metadata;
-use BusFactor\EventStream\Stream;
 use BusFactor\EventStream\StreamEventInterface;
 use BusFactor\Pdo\PdoInterface;
 use BusFactor\Uuid\Uuid;
@@ -65,7 +65,7 @@ final class PdoEventStoreAdapter implements AdapterInterface
 
         $stream = new Stream($streamId, $streamType);
         foreach ($rows as $row) {
-            $stream = $stream->withEnvelope($this->buildEventFromRow($row));
+            $stream = $stream->withRecordedEvent($this->buildEventFromRow($row));
         }
 
         return $stream;
@@ -142,9 +142,9 @@ final class PdoEventStoreAdapter implements AdapterInterface
             implode(',', $insertColumns)
         );
         $query = $this->pdo->prepare($sql);
-        foreach ($stream->getEnvelopes() as $envelope) {
-            /** @var Envelope $envelope */
-            $values = $this->buildValuesFromEvent($envelope);
+        foreach ($stream->getRecordedEvents() as $recordedEvent) {
+            /** @var RecordedEvent $recordedEvent */
+            $values = $this->buildValuesFromEvent($recordedEvent);
             $metadata = json_encode($values['metadata']);
             $payload = json_encode($values['payload']);
             try {
@@ -228,7 +228,7 @@ final class PdoEventStoreAdapter implements AdapterInterface
         $this->pdo->exec($sql);
     }
 
-    private function buildEventFromRow(array $row): Envelope
+    private function buildEventFromRow(array $row): RecordedEvent
     {
         $version = (int) $row[$this->config->getAlias('stream_version')];
         $metadata = new Metadata(json_decode(
@@ -255,19 +255,19 @@ final class PdoEventStoreAdapter implements AdapterInterface
             throw new JsonSerializationException(json_last_error_msg());
         }
 
-        return Envelope::create($event, $metadata, $version, $recordTime);
+        return RecordedEvent::create($event, $metadata, $version, $recordTime);
     }
 
-    private function buildValuesFromEvent(Envelope $envelope): array
+    private function buildValuesFromEvent(RecordedEvent $recordedEvent): array
     {
         $values = [
-            'version' => $envelope->getVersion(),
-            'metadata' => $envelope->getMetadata()
-                ->with('revision', $envelope->getEvent()::getRevision())
+            'version' => $recordedEvent->getVersion(),
+            'metadata' => $recordedEvent->getMetadata()
+                ->with('revision', $recordedEvent->getEvent()::getRevision())
                 ->toArray(),
-            'class' => get_class($envelope->getEvent()),
-            'payload' => $envelope->getEvent()->serialize(),
-            'time' => $envelope->getRecordTime()->format('Y-m-d\TH:i:s.uP'),
+            'class' => get_class($recordedEvent->getEvent()),
+            'payload' => $recordedEvent->getEvent()->serialize(),
+            'time' => $recordedEvent->getRecordTime()->format('Y-m-d\TH:i:s.uP'),
         ];
 
         if (json_last_error()) {

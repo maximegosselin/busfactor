@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace BusFactor\Scenario;
 
-use BusFactor\EventStream\Envelope;
-use BusFactor\EventStream\Stream;
+use BusFactor\Aggregate\RecordedEvent;
+use BusFactor\Aggregate\Stream;
 use Countable;
 
 final class PublishedStreams implements Countable
@@ -29,17 +29,17 @@ final class PublishedStreams implements Countable
         return $this->streams;
     }
 
-    /** @return Envelope[] */
+    /** @return RecordedEvent[] */
     public function getAllOf(string $eventClass): array
     {
-        $envelopes = [];
+        $recordedEvents = [];
         foreach ($this->streams as $stream) {
-            foreach ($stream->getEnvelopes() as $envelope) {
-                if (get_class($envelope->getEvent()) === $eventClass) {
-                    $envelopes[] = $envelope;
+            foreach ($stream->getRecordedEvents() as $recordedEvent) {
+                if (get_class($recordedEvent->getEvent()) === $eventClass) {
+                    $recordedEvents[] = $recordedEvent;
                 }
             }
         }
-        return $envelopes;
+        return $recordedEvents;
     }
 }

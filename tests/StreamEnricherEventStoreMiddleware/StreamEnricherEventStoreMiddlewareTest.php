@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace BusFactor\StreamEnricherEventStoreMiddleware;
 
+use BusFactor\Aggregate\Metadata;
+use BusFactor\Aggregate\RecordedEvent;
+use BusFactor\Aggregate\Stream;
 use BusFactor\EventStore\EventStore;
 use BusFactor\EventStore\EventStoreInterface;
 use BusFactor\EventStore\InMemoryEventStoreAdapter;
 use BusFactor\EventStore\InspectorInterface;
 use BusFactor\EventStore\MiddlewareInterface;
-use BusFactor\EventStream\Envelope;
-use BusFactor\EventStream\Metadata;
-use BusFactor\EventStream\Stream;
 use PHPUnit\Framework\TestCase;
 
 class StreamEnricherEventStoreMiddlewareTest extends TestCase
@@ -39,7 +39,7 @@ class StreamEnricherEventStoreMiddlewareTest extends TestCase
 
             public function append(Stream $stream, ?int $expectedVersion, EventStoreInterface $next): void
             {
-                $this->metadata = $stream->getEnvelopes()[0]->getMetadata();
+                $this->metadata = $stream->getRecordedEvents()[0]->getMetadata();
                 $next->append($stream, $expectedVersion);
             }
 
@@ -59,7 +59,7 @@ class StreamEnricherEventStoreMiddlewareTest extends TestCase
         $store->addMiddleware(new StreamEnricherEventStoreMiddleware(new TestEnricher()));
 
         $stream = (new Stream('123', 'type'))
-            ->withEnvelope(Envelope::createNow(new TestEvent(), new Metadata(), 1));
+            ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 1));
 
         $store->append($stream);
 

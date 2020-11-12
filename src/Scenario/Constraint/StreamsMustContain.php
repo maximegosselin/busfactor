@@ -31,8 +31,8 @@ final class StreamsMustContain extends Constraint
     public function matches($publishedStreams): bool
     {
         foreach ($publishedStreams->getAll() as $stream) {
-            foreach ($stream->getEnvelopes() as $envelope) {
-                if (get_class($envelope->getEvent()) === $this->eventClass) {
+            foreach ($stream->getRecordedEvents() as $recordedEvent) {
+                if (get_class($recordedEvent->getEvent()) === $this->eventClass) {
                     return true;
                 }
             }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace BusFactor\EventBus;
 
-use BusFactor\EventStream\Envelope;
-use BusFactor\EventStream\Stream;
+use BusFactor\Aggregate\RecordedEvent;
+use BusFactor\Aggregate\Stream;
 
 final class Dispatcher implements EventStreamPublisherInterface
 {
@@ -14,9 +14,9 @@ final class Dispatcher implements EventStreamPublisherInterface
 
     public function publish(Stream $stream): void
     {
-        $envelopes = $stream->getEnvelopes();
-        foreach ($envelopes as $envelope) {
-            $this->notifySubscribers($stream->getStreamId(), $envelope);
+        $recordedEvents = $stream->getRecordedEvents();
+        foreach ($recordedEvents as $recordedEvent) {
+            $this->notifySubscribers($stream->getStreamId(), $recordedEvent);
         }
     }
 
@@ -28,18 +28,18 @@ final class Dispatcher implements EventStreamPublisherInterface
         $this->subscribers[$eventClass][] = $subscriber;
     }
 
-    private function notifySubscribers(string $aggregateId, Envelope $envelope): void
+    private function notifySubscribers(string $aggregateId, RecordedEvent $recordedEvent): void
     {
-        $subscribers = $this->resolveSubscribers($envelope);
+        $subscribers = $this->resolveSubscribers($recordedEvent);
         foreach ($subscribers as $subscriber) {
-            $subscriber->handle($aggregateId, $envelope);
+            $subscriber->handle($aggregateId, $recordedEvent);
         }
     }
 
     /** @return EventHandlerInterface[] */
-    private function resolveSubscribers(Envelope $envelope): array
+    private function resolveSubscribers(RecordedEvent $recordedEvent): array
     {
-        $name = get_class($envelope->getEvent());
+        $name = get_class($recordedEvent->getEvent());
         if (!isset($this->subscribers[$name])) {
             return [];
         }

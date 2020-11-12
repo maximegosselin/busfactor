@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace BusFactor\PdoEventStore;
 
+use BusFactor\Aggregate\RecordedEvent;
 use BusFactor\EventStore\Filter;
 use BusFactor\EventStore\InspectorInterface;
-use BusFactor\EventStream\Envelope;
 
 class TestInspector implements InspectorInterface
 {
-    /** @var Envelope[] */
+    /** @var RecordedEvent[] */
     private array $inspectedEvents = [];
 
     public function getFilter(): Filter
@@ -18,7 +18,7 @@ class TestInspector implements InspectorInterface
         return new Filter();
     }
 
-    public function inspect(string $streamId, string $streamType, Envelope $envelope): void
+    public function inspect(string $streamId, string $streamType, RecordedEvent $envelope): void
     {
         $this->inspectedEvents[] = $envelope;
     }

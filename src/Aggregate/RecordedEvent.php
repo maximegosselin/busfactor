@@ -13,13 +13,34 @@ final class RecordedEvent
 
     private int $version;
 
+    private Metadata $metadata;
+
     private DateTimeInterface $recordTime;
 
-    public function __construct(EventInterface $event, int $version)
-    {
+    private function __construct(
+        EventInterface $event,
+        int $version,
+        Metadata $metadata,
+        DateTimeInterface $recordTime
+    ) {
         $this->event = $event;
         $this->version = $version;
-        $this->recordTime = new DateTimeImmutable();
+        $this->metadata = $metadata;
+        $this->recordTime = clone $recordTime;
+    }
+
+    public static function create(
+        EventInterface $event,
+        int $version,
+        Metadata $metadata,
+        DateTimeImmutable $recordTime
+    ): self {
+        return new static($event, $version, $metadata, $recordTime);
+    }
+
+    public static function createNow(EventInterface $event, Metadata $metadata, int $version): self
+    {
+        return new static($event, $version, $metadata, new DateTimeImmutable());
     }
 
     public function getEvent(): EventInterface
@@ -32,15 +53,20 @@ final class RecordedEvent
         return $this->version;
     }
 
-    public function getRecordTime(): DateTimeInterface
+    public function getMetadata(): Metadata
     {
-        return $this->recordTime;
+        return $this->metadata;
     }
 
-    public function withRecordTime(DateTimeInterface $recordTime): self
+    public function getRecordTime(): DateTimeInterface
+    {
+        return clone $this->recordTime;
+    }
+
+    public function withMetadata(Metadata $metadata): self
     {
         $clone = clone $this;
-        $clone->recordTime = $recordTime;
+        $clone->metadata = $metadata;
         return $clone;
     }
 }

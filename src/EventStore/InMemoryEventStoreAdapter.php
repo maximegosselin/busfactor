@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace BusFactor\EventStore;
 
-use BusFactor\EventStream\Envelope;
-use BusFactor\EventStream\Stream;
+use BusFactor\Aggregate\RecordedEvent;
+use BusFactor\Aggregate\Stream;
 use RuntimeException;
 
 final class InMemoryEventStoreAdapter implements AdapterInterface
@@ -19,10 +19,10 @@ final class InMemoryEventStoreAdapter implements AdapterInterface
     {
         if ($this->streamExists($streamId, $streamType)) {
             $stream = new Stream($streamId, $streamType);
-            /** @var Envelope $envelope */
-            foreach ($this->storage[$this->resolveId($streamId, $streamType)]['envelopes'] as $envelope) {
-                if ($envelope->getVersion() >= $fromVersion) {
-                    $stream = $stream->withEnvelope($envelope);
+            /** @var RecordedEvent $recordedEvent */
+            foreach ($this->storage[$this->resolveId($streamId, $streamType)]['recordedEvents'] as $recordedEvent) {
+                if ($recordedEvent->getVersion() >= $fromVersion) {
+                    $stream = $stream->withRecordedEvent($recordedEvent);
                 }
             }
 
@@ -40,7 +40,7 @@ final class InMemoryEventStoreAdapter implements AdapterInterface
     public function getVersion(string $streamId, string $streamType): int
     {
         if ($this->streamExists($streamId, $streamType)) {
-            return max(array_keys($this->storage[$this->resolveId($streamId, $streamType)]['envelopes']));
+            return max(array_keys($this->storage[$this->resolveId($streamId, $streamType)]['recordedEvents']));
         }
 
         throw StreamNotFoundException::forId($streamId, $streamType);
@@ -48,7 +48,7 @@ final class InMemoryEventStoreAdapter implements AdapterInterface
 
     public function append(Stream $stream, ?int $expectedVersion = null): void
     {
-        if (count($stream->getEnvelopes()) === 0) {
+        if (count($stream->getRecordedEvents()) === 0) {
             return;
         }
 
@@ -71,14 +71,14 @@ final class InMemoryEventStoreAdapter implements AdapterInterface
             $this->storage[$key] = [
                 'id' => $stream->getStreamId(),
                 'type' => $stream->getStreamType(),
-                'envelopes' => [],
+                'recordedEvents' => [],
             ];
         }
 
-        /** @var Envelope $envelope */
-        foreach ($stream->getEnvelopes() as $envelope) {
-            $version = $envelope->getVersion();
-            if (isset($this->storage[$key]['envelopes'][$version])) {
+        /** @var RecordedEvent $recordedEvent */
+        foreach ($stream->getRecordedEvents() as $recordedEvent) {
+            $version = $recordedEvent->getVersion();
+            if (isset($this->storage[$key]['recordedEvents'][$version])) {
                 $message = sprintf(
                     'An event with version %d is already recorded for stream ID %s.',
                     $version,
@@ -86,7 +86,7 @@ final class InMemoryEventStoreAdapter implements AdapterInterface
                 );
                 throw new ConcurrencyException($message);
             }
-            $this->storage[$key]['envelopes'][$version] = $envelope;
+            $this->storage[$key]['recordedEvents'][$version] = $recordedEvent;
             $this->chronologicalIndex[] = [$key, $version];
         }
     }
@@ -105,13 +105,13 @@ final class InMemoryEventStoreAdapter implements AdapterInterface
         foreach ($this->chronologicalIndex as $pair) {
             $key = $pair[0];
             $version = $pair[1];
-            /** @var Envelope $envelope */
-            $envelope = $this->storage[$key]['envelopes'][$version];
+            /** @var RecordedEvent $recordedEvent */
+            $recordedEvent = $this->storage[$key]['recordedEvents'][$version];
             if (
                 empty($inspector->getFilter()->getClasses())
-                || in_array(get_class($envelope->getEvent()), $inspector->getFilter()->getClasses())
+                || in_array(get_class($recordedEvent->getEvent()), $inspector->getFilter()->getClasses())
             ) {
-                $inspector->inspect($this->storage[$key]['id'], $this->storage[$key]['type'], $envelope);
+                $inspector->inspect($this->storage[$key]['id'], $this->storage[$key]['type'], $recordedEvent);
             }
         }
     }

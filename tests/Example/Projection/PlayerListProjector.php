@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace BusFactor\Example\Projection;
 
+use BusFactor\Aggregate\RecordedEvent;
 use BusFactor\EventBus\EventHandlerInterface;
 use BusFactor\EventBus\EventHandlerTrait;
-use BusFactor\EventStream\Envelope;
 use BusFactor\Example\Aggregate\PlayerNameChangedEvent;
 use BusFactor\Example\Aggregate\PlayerRegisteredEvent;
 use BusFactor\ProjectionStore\ProjectionNotFoundException;
@@ -31,14 +31,14 @@ class PlayerListProjector implements EventHandlerInterface
         ];
     }
 
-    private function handlePlayerRegisteredEvent(string $playerId, PlayerRegisteredEvent $event, Envelope $envelope): void
+    private function handlePlayerRegisteredEvent(string $playerId, PlayerRegisteredEvent $event, RecordedEvent $envelope): void
     {
         $this->projections->store(
             $this->getProjection()->withPlayer($playerId, $event->getNumber(), $event->getName())
         );
     }
 
-    private function handlePlayerNameChangedEvent(string $playerId, PlayerNameChangedEvent $event, Envelope $envelope): void
+    private function handlePlayerNameChangedEvent(string $playerId, PlayerNameChangedEvent $event, RecordedEvent $envelope): void
     {
         $this->projections->store(
             $this->getProjection()->withPlayerName($playerId, $event->getNew())

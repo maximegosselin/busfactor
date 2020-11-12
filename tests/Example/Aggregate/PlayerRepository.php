@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace BusFactor\Example\Aggregate;
 
+use BusFactor\Aggregate\AggregateFactory;
 use BusFactor\AggregateStore\AggregateStore;
 use BusFactor\AggregateStore\AggregateStoreInterface;
 use BusFactor\EventBus\EventBusInterface;
-use BusFactor\EventSourcedAggregateStore\EventSourcedAggregateFactory;
-use BusFactor\EventSourcedAggregateStore\EventSourcedAggregateStoreAdapter;
+use BusFactor\EventSourcingAggregateStore\EventSourcingAggregateStoreAdapter;
 use BusFactor\EventStore\EventStoreInterface;
 
 class PlayerRepository
@@ -18,8 +18,8 @@ class PlayerRepository
     public function __construct(EventStoreInterface $eventStore, EventBusInterface $eventBus)
     {
         $this->store = new AggregateStore(
-            new EventSourcedAggregateStoreAdapter(
-                new EventSourcedAggregateFactory(Player::class),
+            new EventSourcingAggregateStoreAdapter(
+                new AggregateFactory(Player::class),
                 $eventStore,
                 $eventBus
             )

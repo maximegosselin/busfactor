@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\EventSourcedAggregateStore;
+namespace BusFactor\EventSourcingAggregateStore;
 
 use BusFactor\EventSourcedAggregate\EventSourcedAggregateInterface;
 use BusFactor\EventSourcedAggregate\EventSourcedAggregateRootTrait;

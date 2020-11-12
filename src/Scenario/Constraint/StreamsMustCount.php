@@ -32,7 +32,7 @@ final class StreamsMustCount extends Constraint
     {
         $count = 0;
         foreach ($publishedStreams->getAll() as $stream) {
-            $count += count($stream->getEnvelopes());
+            $count += count($stream->getRecordedEvents());
         }
         return $count === $this->count;
     }

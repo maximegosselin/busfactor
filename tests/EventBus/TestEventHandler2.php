@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace BusFactor\EventBus;
 
-use BusFactor\EventStream\Envelope;
-use BusFactor\EventStream\StreamEventInterface;
+use BusFactor\Aggregate\RecordedEvent;
+use BusFactor\Aggregate\StreamEventInterface;
 
 class TestEventHandler2 implements EventHandlerInterface
 {
@@ -27,7 +27,7 @@ class TestEventHandler2 implements EventHandlerInterface
         return $this->handledEvents;
     }
 
-    private function handleTestEvent2(string $aggregateId, TestEvent2 $event, Envelope $envelope): void
+    private function handleTestEvent2(string $aggregateId, TestEvent2 $event, RecordedEvent $envelope): void
     {
         $this->handledEvents[] = $event;
     }

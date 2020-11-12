@@ -2,10 +2,8 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\EventStream;
+namespace BusFactor\Aggregate;
 
-use BusFactor\Aggregate\EventInterface;
-use BusFactor\Aggregate\RecordedEvent;
 use PHPUnit\Framework\TestCase;
 
 class EnvelopeTest extends TestCase
@@ -14,7 +12,7 @@ class EnvelopeTest extends TestCase
     public function it_creates_envelope_from_recorded_event(): void
     {
         $event = new TestEvent('abc', 123, []);
-        $envelope = Envelope::fromRecordedEvent(new RecordedEvent($event, 1));
+        $envelope = RecordedEvent::fromRecordedEvent(new RecordedEvent($event, 1));
 
         $this->assertSame($event, $envelope->getEvent());
     }
@@ -27,18 +25,18 @@ class EnvelopeTest extends TestCase
         $event = new class implements EventInterface {
         };
 
-        Envelope::fromRecordedEvent(new RecordedEvent($event, 1));
+        RecordedEvent::fromRecordedEvent(new RecordedEvent($event, 1));
     }
 
     /** @test */
     public function record_time_includes_microseconds(): void
     {
-        $microseconds1 = Envelope::createNow(
+        $microseconds1 = RecordedEvent::createNow(
             new TestEvent('abc', 123, []),
             new Metadata(),
             1
         )->getRecordTime()->format('u');
-        $microseconds2 = Envelope::createNow(
+        $microseconds2 = RecordedEvent::createNow(
             new TestEvent('abc', 123, []),
             new Metadata(),
             1

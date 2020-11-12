@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace BusFactor\StreamEnricherEventStoreMiddleware;
 
+use BusFactor\Aggregate\Stream;
 use BusFactor\EventStore\EventStoreInterface;
 use BusFactor\EventStore\InspectorInterface;
 use BusFactor\EventStore\MiddlewareInterface;
-use BusFactor\EventStream\Stream;
 use BusFactor\StreamEnricher\StreamEnricherInterface;
 
 final class StreamEnricherEventStoreMiddleware implements MiddlewareInterface

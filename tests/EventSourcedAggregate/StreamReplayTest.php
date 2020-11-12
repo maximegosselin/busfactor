@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace BusFactor\EventSourcedAggregate;
 
 use BusFactor\Aggregate\RecordedEvent;
-use BusFactor\EventStream\Envelope;
-use BusFactor\EventStream\Stream;
+use BusFactor\Aggregate\RecordedEvent;
+use BusFactor\Aggregate\Stream;
 use PHPStan\Testing\TestCase;
 
 class StreamReplayTest extends TestCase
@@ -18,7 +18,7 @@ class StreamReplayTest extends TestCase
         $agg1->setName('Bill');
 
         $stream = array_reduce($agg1->pullNewEvents(), function (Stream $stream, RecordedEvent $event) {
-            return $stream->withEnvelope(Envelope::fromRecordedEvent($event));
+            return $stream->withRecordedEvent(RecordedEvent::fromRecordedEvent($event));
         }, new Stream($agg1->getAggregateId(), $agg1::getType()));
 
         $agg2 = new TestEventSourcedAggregate('123');

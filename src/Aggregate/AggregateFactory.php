@@ -2,20 +2,18 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\EventSourcedAggregateStore;
+namespace BusFactor\Aggregate;
 
-use BusFactor\EventSourcedAggregate\EventSourcedAggregateInterface;
-use BusFactor\EventStream\Stream;
 use InvalidArgumentException;
 
-final class EventSourcedAggregateFactory
+final class AggregateFactory
 {
     private string $aggregateRootClass;
 
     public function __construct(string $aggregateRootClass)
     {
-        if (!in_array(EventSourcedAggregateInterface::class, class_implements($aggregateRootClass))) {
-            $message = 'Class ' . $aggregateRootClass . ' must implement ' . EventSourcedAggregateInterface::class;
+        if (!in_array(AggregateInterface::class, class_implements($aggregateRootClass))) {
+            $message = 'Class ' . $aggregateRootClass . ' must implement ' . AggregateInterface::class;
             throw new InvalidArgumentException($message);
         }
         $this->aggregateRootClass = $aggregateRootClass;
@@ -26,10 +24,10 @@ final class EventSourcedAggregateFactory
         return $this->aggregateRootClass;
     }
 
-    public function rebuildFromStream(Stream $stream): EventSourcedAggregateInterface
+    public function rebuildFromStream(Stream $stream): AggregateInterface
     {
         $class = $this->aggregateRootClass;
-        /** @var EventSourcedAggregateInterface $aggregate */
+        /** @var AggregateInterface $aggregate */
         $aggregate = new $class($stream->getStreamId());
         $aggregate->replayStream($stream);
         return $aggregate;

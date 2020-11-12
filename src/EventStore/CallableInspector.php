@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BusFactor\EventStore;
 
-use BusFactor\EventStream\Envelope;
+use BusFactor\Aggregate\RecordedEvent;
 
 final class CallableInspector implements InspectorInterface
 {
@@ -24,9 +24,9 @@ final class CallableInspector implements InspectorInterface
         return $this->filter;
     }
 
-    public function inspect(string $streamId, string $streamType, Envelope $envelope): void
+    public function inspect(string $streamId, string $streamType, RecordedEvent $recordedEvent): void
     {
         $callable = $this->callable;
-        $callable($streamId, $envelope);
+        $callable($streamId, $recordedEvent);
     }
 }

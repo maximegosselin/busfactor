@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace BusFactor\EventStoreReductionInspection;
 
+use BusFactor\Aggregate\RecordedEvent;
 use BusFactor\EventStore\Filter;
-use BusFactor\EventStream\Envelope;
 
 class TestReducer implements ReductionInspectorInterface
 {
@@ -16,7 +16,7 @@ class TestReducer implements ReductionInspectorInterface
         return new Filter();
     }
 
-    public function inspect(string $streamId, string $streamType, Envelope $envelope): void
+    public function inspect(string $streamId, string $streamType, RecordedEvent $envelope): void
     {
         $this->eventCount++;
     }

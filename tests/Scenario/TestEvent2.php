@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace BusFactor\Scenario;
 
-use BusFactor\EventStream\RevisionTrait;
-use BusFactor\EventStream\SerializationTrait;
-use BusFactor\EventStream\StreamEventInterface;
+use BusFactor\Aggregate\RevisionTrait;
+use BusFactor\Aggregate\SerializationTrait;
+use BusFactor\Aggregate\StreamEventInterface;
 
 class TestEvent2 implements StreamEventInterface
 {

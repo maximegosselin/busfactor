@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\EventStream;
+namespace BusFactor\Aggregate;
 
 use ReflectionClass;
 use RuntimeException;
@@ -14,7 +14,7 @@ trait SerializationTrait
         return get_object_vars($this);
     }
 
-    public static function deserialize(array $data): StreamEventInterface
+    public static function deserialize(array $data): EventInterface
     {
         $class = new ReflectionClass(__CLASS__);
 
@@ -30,7 +30,7 @@ trait SerializationTrait
             }
         }
 
-        /** @var StreamEventInterface $object */
+        /** @var EventInterface $object */
         $object = $class->newInstanceArgs($args);
         return $object;
     }
