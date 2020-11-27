@@ -7,7 +7,7 @@
 - Requirements
 - Disclaimer
 - Guides
-    - [The Command Dispatcher](command-dispatcher.md)
+    - [Using the Command Dispatcher](command-dispatcher.md)
     - Aggregate Modeling
     - The Event Bus
     - Projections

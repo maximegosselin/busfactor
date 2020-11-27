@@ -1,8 +1,8 @@
-# The Command Dispatcher
+# Using the Command Dispatcher
 
 This component provides a flexible implementation of the [Command Dispatcher/Bus](https://www.google.com/search?q=command+dispatcher+pattern) pattern.
 
-Its goal is to decouple application logic from the UI layer (e.g. HTTP or CLI controllers).
+Its purpose is to decouple application logic from the UI layer (e.g. HTTP or CLI controllers).
 
 ## Modeling Commands
 
@@ -36,7 +36,7 @@ A handler class must implement `BusFactor\CommandDispatcher\HandlerInterface`. T
 ```php
 use BusFactor\CommandDispatcher\HandlerInterface;
 
-class OrderCommandHandler implements HandlerInterface
+class ApproveOrderHandler implements HandlerInterface
 {
     // Constructor and other stuff...
 
@@ -58,7 +58,7 @@ which name starts with `handle` and ends with the command's class name.
 use BusFactor\CommandDispatcher\HandleCommandTrait;
 use BusFactor\CommandDispatcher\HandlerInterface;
 
-class OrderCommandHandler implements HandlerInterface
+class OrderHandler implements HandlerInterface
 {
     use HandleCommandTrait;
 
@@ -73,7 +73,7 @@ class OrderCommandHandler implements HandlerInterface
 }
 ```
 
-> The `handleApproveOrderCommand` function must not be public because it will never be called from outside the class.
+> The `handleApproveOrderCommand` function should not be public because it will never be called from outside the class.
 
 ## Configuring the Dispatcher
 
@@ -94,20 +94,26 @@ $dispatcher = new Dispatcher();
 The `Dispatcher` must be told which handler to invoke when dispatching a command. It's done with the
 `registerHandler` method.
 
+Commands are identified by their fully qualified class name (FQCN).
+
 ```php
-$handler = new OrderCommandHandler(/* inject required dependencies... */);
+$handler = new OrderHandler(/* inject required dependencies... */);
+
+// Also, you can lazy-load the handler with `HandlerProxy`. It receives
+// a callable that resolves to an instance of `HandlerInterface`.
+$handler = new HandlerProxy(function() {
+    return new OrderHandler(/* inject required dependencies... */);
+});
 
 $dispatcher->registerHandler(ApproveOrderCommand::class, $handler);
 ```
-
-Commands are identified by their fully qualified class name (FQCN).
 
 ## Dispatching Commands
 
 Typically, commands are dispatched from within the UI layer.
 
 Here's a realistic example of a [PSR-15](https://www.php-fig.org/psr/psr-15/) controller (aka *request handler*)
-dispatching a command:
+that dispatches a command:
 
 ```php
 use BusFactor\CommandDispatcher\Dispatcher;
@@ -170,7 +176,7 @@ Every time you call the `dispatch` method on `Dispatcher`, middlewares will be e
 ## Best Practices
 
 - Commands are named with an imperative verb.
-- Commands should have only scalar properties.
+- Commands should have only private properties with scalar types (`array`, `bool`, `float`, `int`, `string`).
 - Commands should not validate themselves.
 - Command validation and security-related checks must happen in command handlers.
 - Group related commands with a shared handler.
