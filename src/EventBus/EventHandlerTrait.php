@@ -19,11 +19,13 @@ trait EventHandlerTrait
         if (method_exists($this, $method)) {
             $this->$method($aggregateId, $event, $recordedEvent);
         } else {
-            throw new RuntimeException(sprintf(
-                'Function "%s" must be implemented in class %s',
-                $method,
-                get_class($this)
-            ));
+            throw new RuntimeException(
+                sprintf(
+                    'Function "%s" must be implemented in class %s',
+                    $method,
+                    get_class($this)
+                )
+            );
         }
     }
 }

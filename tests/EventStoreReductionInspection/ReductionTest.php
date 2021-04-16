@@ -2,13 +2,11 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\EventStoreReductionInspection;
+namespace BusFactor\EventStore;
 
 use BusFactor\Aggregate\Metadata;
 use BusFactor\Aggregate\RecordedEvent;
 use BusFactor\Aggregate\Stream;
-use BusFactor\EventStore\EventStore;
-use BusFactor\EventStore\InMemoryEventStoreAdapter;
 use PHPUnit\Framework\TestCase;
 
 class ReductionTest extends TestCase

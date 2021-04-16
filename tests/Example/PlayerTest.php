@@ -16,11 +16,11 @@ use BusFactor\Example\Projection\PlayerListProjection;
 use BusFactor\Example\Projection\PlayerListProjector;
 use BusFactor\ProjectionStore\InMemoryProjectionStoreAdapter;
 use BusFactor\ProjectionStore\ProjectionStore;
-use BusFactor\Scenario\AssertionsTrait;
-use BusFactor\Scenario\Play;
-use BusFactor\Scenario\PublishedStreams;
-use BusFactor\Scenario\Scenario;
-use BusFactor\Scenario\UpdatedProjections;
+use BusFactor\Testing\AssertionsTrait;
+use BusFactor\Testing\Play;
+use BusFactor\Testing\PublishedStreams;
+use BusFactor\Testing\Scenario;
+use BusFactor\Testing\UpdatedProjections;
 use PHPUnit\Framework\TestCase;
 
 class PlayerTest extends TestCase

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace BusFactor\EventSourcedAggregate;
 
 use BusFactor\Aggregate\RecordedEvent;
-use BusFactor\Aggregate\RecordedEvent;
 use BusFactor\Aggregate\Stream;
 use PHPStan\Testing\TestCase;
 

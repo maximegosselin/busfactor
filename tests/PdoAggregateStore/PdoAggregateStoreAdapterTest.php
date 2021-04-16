@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\PdoAggregateStore;
+namespace BusFactor\Extra\PdoAggregateStore;
 
 use BusFactor\AggregateStore\AggregateStore;
-use BusFactor\ObjectSerializer\ObjectSerializer;
-use BusFactor\ObjectSerializer\SerializeFunctionObjectSerializer;
-use BusFactor\PdoProxy\PdoProxy;
+use BusFactor\Serialization\ObjectSerializer;
+use BusFactor\Serialization\SerializeFunctionObjectSerializer;
+use BusFactor\Util\PdoProxy;
 use PDO;
 use PHPUnit\Framework\TestCase;
 

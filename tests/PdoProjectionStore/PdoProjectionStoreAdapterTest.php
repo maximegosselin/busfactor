@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\PdoProjectionStore;
+namespace BusFactor\Extra\PdoProjectionStore;
 
-use BusFactor\ObjectSerializer\ObjectSerializer;
-use BusFactor\ObjectSerializer\SerializeFunctionObjectSerializer;
-use BusFactor\PdoProxy\PdoProxy;
 use BusFactor\ProjectionStore\ProjectionStore;
+use BusFactor\Serialization\ObjectSerializer;
+use BusFactor\Serialization\SerializeFunctionObjectSerializer;
+use BusFactor\Util\PdoProxy;
 use PDO;
 use PHPUnit\Framework\TestCase;
 

@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace BusFactor\ReflectionObjectSerializer;
 
-use BusFactor\ObjectSerializer\ObjectSerializer;
+use BusFactor\Serialization\ObjectSerializer;
+use BusFactor\Serialization\ReflectionObjectSerializer;
 use PHPUnit\Framework\TestCase;
 
 class ReflectionSerializerTest extends TestCase

@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\StreamEnricherEventBusMiddleware;
+namespace BusFactor\Support\StreamEnricher;
 
 use BusFactor\Aggregate\RecordedEvent;
 use BusFactor\Aggregate\Stream;
-use BusFactor\StreamEnricher\StreamEnricherInterface;
 
 class TestEnricher implements StreamEnricherInterface
 {

@@ -37,9 +37,12 @@ final class Stream
     {
         $clone = clone $this;
         $clone->recordedEvents[] = $recordedEvent;
-        usort($clone->recordedEvents, function (RecordedEvent $a, RecordedEvent $b) {
-            return $a->getVersion() <=> $b->getVersion();
-        });
+        usort(
+            $clone->recordedEvents,
+            function (RecordedEvent $a, RecordedEvent $b) {
+                return $a->getVersion() <=> $b->getVersion();
+            }
+        );
 
         if ($clone->highestVersion == 0) {
             $clone->highestVersion = $recordedEvent->getVersion();

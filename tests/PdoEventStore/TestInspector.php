@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\PdoEventStore;
+namespace BusFactor\Extra\PdoEventStore;
 
 use BusFactor\Aggregate\RecordedEvent;
 use BusFactor\EventStore\Filter;

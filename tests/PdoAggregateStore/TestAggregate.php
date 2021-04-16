@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\PdoAggregateStore;
+namespace BusFactor\Extra\PdoAggregateStore;
 
 use BusFactor\Aggregate\AggregateInterface;
 use BusFactor\Aggregate\AggregateRootTrait;

@@ -13,17 +13,17 @@ final class Metadata
         $this->data = $data;
     }
 
-    public function has(string $key): bool
-    {
-        return array_key_exists($key, $this->data);
-    }
-
     public function get(string $key)
     {
         if ($this->has($key)) {
             return $this->data[$key];
         }
         return null;
+    }
+
+    public function has(string $key): bool
+    {
+        return array_key_exists($key, $this->data);
     }
 
     public function with(string $key, $value): self

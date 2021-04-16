@@ -9,11 +9,6 @@ use RuntimeException;
 
 trait SerializationTrait
 {
-    public function serialize(): array
-    {
-        return get_object_vars($this);
-    }
-
     public static function deserialize(array $data): EventInterface
     {
         $class = new ReflectionClass(__CLASS__);
@@ -24,7 +19,12 @@ trait SerializationTrait
             foreach ($constructor->getParameters() as $parameter) {
                 $paramName = $parameter->getName();
                 if (!array_key_exists($paramName, $data)) {
-                    throw new RuntimeException(sprintf("Deserialization error: No payload value for the constructor argument named '%s'.", $paramName));
+                    throw new RuntimeException(
+                        sprintf(
+                            "Deserialization error: No payload value for the constructor argument named '%s'.",
+                            $paramName
+                        )
+                    );
                 }
                 $args[] = $data[$paramName];
             }
@@ -33,5 +33,10 @@ trait SerializationTrait
         /** @var EventInterface $object */
         $object = $class->newInstanceArgs($args);
         return $object;
+    }
+
+    public function serialize(): array
+    {
+        return get_object_vars($this);
     }
 }

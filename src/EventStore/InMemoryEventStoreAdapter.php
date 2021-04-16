@@ -37,15 +37,6 @@ final class InMemoryEventStoreAdapter implements AdapterInterface
         return array_key_exists($this->resolveId($streamId, $streamType), $this->storage);
     }
 
-    public function getVersion(string $streamId, string $streamType): int
-    {
-        if ($this->streamExists($streamId, $streamType)) {
-            return max(array_keys($this->storage[$this->resolveId($streamId, $streamType)]['recordedEvents']));
-        }
-
-        throw StreamNotFoundException::forId($streamId, $streamType);
-    }
-
     public function append(Stream $stream, ?int $expectedVersion = null): void
     {
         if (count($stream->getRecordedEvents()) === 0) {
@@ -89,6 +80,15 @@ final class InMemoryEventStoreAdapter implements AdapterInterface
             $this->storage[$key]['recordedEvents'][$version] = $recordedEvent;
             $this->chronologicalIndex[] = [$key, $version];
         }
+    }
+
+    public function getVersion(string $streamId, string $streamType): int
+    {
+        if ($this->streamExists($streamId, $streamType)) {
+            return max(array_keys($this->storage[$this->resolveId($streamId, $streamType)]['recordedEvents']));
+        }
+
+        throw StreamNotFoundException::forId($streamId, $streamType);
     }
 
     public function purge(): void

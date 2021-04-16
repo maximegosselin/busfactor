@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace BusFactor\PdoProxy;
 
+use BusFactor\Util\PdoProxy;
 use PDO;
 use PDOException;
 use PDOStatement;

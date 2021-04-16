@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\PdoEventStore;
+namespace BusFactor\Extra\PdoEventStore;
 
 use BusFactor\Aggregate\Metadata;
 use BusFactor\Aggregate\RecordedEvent;
 use BusFactor\Aggregate\Stream;
 use BusFactor\EventStore\EventStore;
-use BusFactor\Pdo\PdoInterface;
-use BusFactor\PdoProxy\PdoProxy;
+use BusFactor\Util\PdoInterface;
+use BusFactor\Util\PdoProxy;
 use PDO;
 use PHPUnit\Framework\TestCase;
 

@@ -6,7 +6,7 @@ namespace BusFactor\StreamEnricherEventStoreMiddleware;
 
 use BusFactor\Aggregate\RecordedEvent;
 use BusFactor\Aggregate\Stream;
-use BusFactor\StreamEnricher\StreamEnricherInterface;
+use BusFactor\Support\StreamEnricher\StreamEnricherInterface;
 
 class TestEnricher implements StreamEnricherInterface
 {

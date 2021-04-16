@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\StreamPublishingInspection;
+namespace BusFactor\Support\StreamPublishingInspection;
 
 use BusFactor\Aggregate\Metadata;
 use BusFactor\Aggregate\RecordedEvent;

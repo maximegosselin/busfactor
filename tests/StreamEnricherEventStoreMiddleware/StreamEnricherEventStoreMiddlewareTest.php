@@ -12,6 +12,7 @@ use BusFactor\EventStore\EventStoreInterface;
 use BusFactor\EventStore\InMemoryEventStoreAdapter;
 use BusFactor\EventStore\InspectorInterface;
 use BusFactor\EventStore\MiddlewareInterface;
+use BusFactor\Support\StreamEnricher\StreamEnricherEventStoreMiddleware;
 use PHPUnit\Framework\TestCase;
 
 class StreamEnricherEventStoreMiddlewareTest extends TestCase

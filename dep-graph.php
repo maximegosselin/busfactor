@@ -2,12 +2,22 @@
 
 declare(strict_types=1);
 
+function rglob(string $pattern, int $flags = 0): array
+{
+    $files = glob($pattern, $flags);
+    foreach (glob(dirname($pattern) . '/*', GLOB_ONLYDIR | GLOB_NOSORT) as $dir) {
+        $files = array_merge($files, rglob($dir . '/' . basename($pattern), $flags));
+    }
+    return $files;
+}
+
 $deps = [];
-foreach (glob('./src/**/*.php') as $file) {
+foreach (rglob('./src/*.php') as $file) {
     $code = file_get_contents($file);
     $matches = [];
     preg_match('/namespace BusFactor\\\\(.*);/', $code, $matches);
     $component = $matches[1];
+    $component = explode('\\', $component)[0];
     if (!isset($deps[$component])) {
         $deps[$component] = [];
     }

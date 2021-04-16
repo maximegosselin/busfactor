@@ -18,11 +18,6 @@ trait AggregateRootTrait
         $this->_newEvents = new Stream($aggregateId, self::getType());
     }
 
-    public function getAggregateId(): string
-    {
-        return $this->_aggregateId;
-    }
-
     public function getVersion(): int
     {
         return $this->_version;
@@ -40,20 +35,17 @@ trait AggregateRootTrait
         return $this->_newEvents;
     }
 
+    public function getAggregateId(): string
+    {
+        return $this->_aggregateId;
+    }
+
     public function replayStream(Stream $stream): void
     {
         foreach ($stream->getRecordedEvents() as $recordedEvent) {
             $this->_version++;
             $this->_handle($recordedEvent);
         }
-    }
-
-    private function apply(EventInterface $event): void
-    {
-        $this->_version++;
-        $recordedEvent = RecordedEvent::createNow($event, new Metadata(), $this->_version);
-        $this->_handle($recordedEvent);
-        $this->_newEvents = $this->_newEvents->withRecordedEvent($recordedEvent);
     }
 
     private function _handle(RecordedEvent $recordedEvent): void
@@ -63,5 +55,13 @@ trait AggregateRootTrait
         if (method_exists($this, $method)) {
             $this->$method($recordedEvent->getEvent(), $recordedEvent);
         }
+    }
+
+    private function apply(EventInterface $event): void
+    {
+        $this->_version++;
+        $recordedEvent = RecordedEvent::createNow($event, new Metadata(), $this->_version);
+        $this->_handle($recordedEvent);
+        $this->_newEvents = $this->_newEvents->withRecordedEvent($recordedEvent);
     }
 }

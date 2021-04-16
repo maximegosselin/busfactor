@@ -8,7 +8,7 @@ interface EventInterface
 {
     public static function getRevision(): int;
 
-    public function serialize(): array;
-
     public static function deserialize(array $data): self;
+
+    public function serialize(): array;
 }
