@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\Example;
+namespace BusFactor\Test\Example;
 
 use BusFactor\CommandDispatcher\Dispatcher;
 use BusFactor\EventBus\EventBus;
@@ -16,11 +16,11 @@ use BusFactor\Example\Projection\PlayerListProjection;
 use BusFactor\Example\Projection\PlayerListProjector;
 use BusFactor\ProjectionStore\InMemoryProjectionStoreAdapter;
 use BusFactor\ProjectionStore\ProjectionStore;
-use BusFactor\Testing\AssertionsTrait;
-use BusFactor\Testing\Play;
-use BusFactor\Testing\PublishedStreams;
-use BusFactor\Testing\Scenario;
-use BusFactor\Testing\UpdatedProjections;
+use BusFactor\Scenario\AssertionsTrait;
+use BusFactor\Scenario\Play;
+use BusFactor\Scenario\PublishedStreams;
+use BusFactor\Scenario\Scenario;
+use BusFactor\Scenario\UpdatedProjections;
 use PHPUnit\Framework\TestCase;
 
 class PlayerTest extends TestCase
@@ -57,22 +57,29 @@ class PlayerTest extends TestCase
             ->dispatch(
                 new RegisterPlayerCommand('123', 1234, 'John Smith')
             )
-            ->testEvents(function (PublishedStreams $streams) {
-                $this->assertPublishedStreamsContainExactly([PlayerRegisteredEvent::class => 1], $streams);
-            })
-            ->testProjections(function (UpdatedProjections $projections) {
-                $this->assertUpdatedProjectionsContainExactly([PlayerListProjection::class => 1], $projections);
+            ->testEvents(
+                function (PublishedStreams $streams) {
+                    $this->assertPublishedStreamsContainExactly([PlayerRegisteredEvent::class => 1], $streams);
+                }
+            )
+            ->testProjections(
+                function (UpdatedProjections $projections) {
+                    $this->assertUpdatedProjectionsContainExactly([PlayerListProjection::class => 1], $projections);
 
-                /** @var PlayerListProjection $projection */
-                $projection = $projections->getAllOf(PlayerListProjection::class)[0];
-                $this->assertCount(1, $projection->getPayload());
-                $this->assertEquals([
-                    '123' => [
-                        'number' => 1234,
-                        'name' => 'John Smith',
-                    ],
-                ], $projection->getPayload());
-            });
+                    /** @var PlayerListProjection $projection */
+                    $projection = $projections->getAllOf(PlayerListProjection::class)[0];
+                    $this->assertCount(1, $projection->getPayload());
+                    $this->assertEquals(
+                        [
+                            '123' => [
+                                'number' => 1234,
+                                'name' => 'John Smith',
+                            ],
+                        ],
+                        $projection->getPayload()
+                    );
+                }
+            );
 
         $this->scenario->play($play);
     }

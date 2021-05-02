@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\Example\Projection;
+namespace BusFactor\Test\Example\Projection;
 
 use BusFactor\Projection\ProjectionInterface;
 

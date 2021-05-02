@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\AggregateStore;
+namespace BusFactor\Test\AggregateStore;
 
 use BusFactor\Aggregate\AggregateInterface;
 use BusFactor\Aggregate\AggregateRootTrait;

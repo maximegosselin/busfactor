@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\Example\Command;
+namespace BusFactor\Test\Example\Command;
 
 use BusFactor\CommandDispatcher\HandleCommandTrait;
 use BusFactor\CommandDispatcher\HandlerInterface;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\StreamEnricherEventStoreMiddleware;
+namespace BusFactor\Test\StreamEnricherEventStoreMiddleware;
 
 use BusFactor\Aggregate\RevisionTrait;
 use BusFactor\Aggregate\SerializationTrait;

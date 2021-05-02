@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\EventBus;
+namespace BusFactor\Test\EventBus;
 
 use BusFactor\Aggregate\Stream;
 

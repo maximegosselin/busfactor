@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\EventSourcingAggregateStore;
+namespace BusFactor\Test\EventSourcingAggregateStore;
 
-use BusFactor\EventSourcedAggregate\EventSourcedAggregateInterface;
-use BusFactor\EventSourcedAggregate\EventSourcedAggregateRootTrait;
+use BusFactor\Aggregate\EventSourcedAggregateInterface;
+use BusFactor\Aggregate\EventSourcedAggregateRootTrait;
 
 class TestAggregate implements EventSourcedAggregateInterface
 {

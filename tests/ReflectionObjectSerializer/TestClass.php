@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\ReflectionObjectSerializer;
+namespace BusFactor\Test\ReflectionObjectSerializer;
 
 class TestClass
 {

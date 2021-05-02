@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\Serialization;
+namespace BusFactor\Test\ObjectSerializer;
 
 use PHPUnit\Framework\TestCase;
 

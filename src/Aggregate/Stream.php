@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace BusFactor\Aggregate;
 
-final class Stream
+use Countable;
+
+final class Stream implements Countable
 {
     private string $streamId;
 
@@ -21,6 +23,11 @@ final class Stream
     {
         $this->streamId = $streamId;
         $this->streamType = $streamType;
+    }
+
+    public function count(): int
+    {
+        return count($this->recordedEvents);
     }
 
     public function getStreamId(): string

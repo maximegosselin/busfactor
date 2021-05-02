@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\Example\Aggregate;
+namespace BusFactor\Test\Example\Aggregate;
 
 use BusFactor\Aggregate\RevisionTrait;
 use BusFactor\Aggregate\SerializationTrait;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\CommandDispatcher;
+namespace BusFactor\Test\CommandDispatcher;
 
 class SuccessfulCommandHandler implements HandlerInterface
 {

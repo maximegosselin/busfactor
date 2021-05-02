@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\EventStore;
+namespace BusFactor\Test\EventStore;
 
 use BusFactor\Aggregate\Metadata;
 use BusFactor\Aggregate\RecordedEvent;
 use BusFactor\Aggregate\Stream;
+use BusFactor\EventStoreReductionInspection\EventStoreReductionInspection;
 use PHPUnit\Framework\TestCase;
 
 class ReductionTest extends TestCase
@@ -17,9 +18,9 @@ class ReductionTest extends TestCase
         $eventStore = new EventStore(new InMemoryEventStoreAdapter());
         $eventStore->append(
             (new Stream('123', 'type'))
-            ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 1))
-            ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 2))
-            ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 3))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 1))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 2))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 3))
         );
         $reduction = new EventStoreReductionInspection($eventStore->getAdapter());
 

@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\EventStore;
+namespace BusFactor\Test\EventStore;
 
 use BusFactor\Aggregate\RecordedEvent;
+use BusFactor\EventStoreReductionInspection\ReductionInspectorInterface;
 
 class TestReducer implements ReductionInspectorInterface
 {

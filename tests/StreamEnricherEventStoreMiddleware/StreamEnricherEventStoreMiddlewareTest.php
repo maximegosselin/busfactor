@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\StreamEnricherEventStoreMiddleware;
+namespace BusFactor\Test\StreamEnricherEventStoreMiddleware;
 
 use BusFactor\Aggregate\Metadata;
 use BusFactor\Aggregate\RecordedEvent;
@@ -12,7 +12,7 @@ use BusFactor\EventStore\EventStoreInterface;
 use BusFactor\EventStore\InMemoryEventStoreAdapter;
 use BusFactor\EventStore\InspectorInterface;
 use BusFactor\EventStore\MiddlewareInterface;
-use BusFactor\Support\StreamEnricher\StreamEnricherEventStoreMiddleware;
+use BusFactor\StreamEnricher\StreamEnricherEventStoreMiddleware;
 use PHPUnit\Framework\TestCase;
 
 class StreamEnricherEventStoreMiddlewareTest extends TestCase
@@ -23,8 +23,12 @@ class StreamEnricherEventStoreMiddlewareTest extends TestCase
         $mw = new class implements MiddlewareInterface {
             public ?Metadata $metadata = null;
 
-            public function fetch(string $streamId, string $streamType, int $fromVersion, EventStoreInterface $next): Stream
-            {
+            public function fetch(
+                string $streamId,
+                string $streamType,
+                int $fromVersion,
+                EventStoreInterface $next
+            ): Stream {
                 return $next->fetch($streamId, $streamType, $fromVersion);
             }
 

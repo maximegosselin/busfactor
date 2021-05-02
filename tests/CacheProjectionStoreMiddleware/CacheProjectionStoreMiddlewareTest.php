@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\CacheProjectionStoreMiddleware;
+namespace BusFactor\Test\CacheProjectionStoreMiddleware;
 
-use BusFactor\ProjectionStore\Middleware\CacheProjectionStoreMiddleware;
 use BusFactor\ProjectionStore\ProjectionStore;
 use PHPUnit\Framework\TestCase;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\CommandDispatcher;
+namespace BusFactor\Test\CommandDispatcher;
 
 use PHPUnit\Framework\TestCase;
 
@@ -23,13 +23,16 @@ class MiddlewareTest extends TestCase
 
         $bus->dispatch(new TestCommand());
 
-        $this->assertEquals($output, [
-            'before mw3',
-            'before mw2',
-            'before mw1',
-            'after mw1',
-            'after mw2',
-            'after mw3',
-        ]);
+        $this->assertEquals(
+            $output,
+            [
+                'before mw3',
+                'before mw2',
+                'before mw1',
+                'after mw1',
+                'after mw2',
+                'after mw3',
+            ]
+        );
     }
 }

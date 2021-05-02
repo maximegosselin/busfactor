@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\EventSourcingAggregateStore;
+namespace BusFactor\Test\EventSourcingAggregateStore;
 
 use BusFactor\Aggregate\AggregateFactory;
 use BusFactor\AggregateStore\AggregateStore;
@@ -27,11 +27,13 @@ class EventSourcedAggregateStoreTest extends TestCase
         $handler->expects($this->exactly(3))->method('handle');
         $eventBus->subscribe(TestEvent::class, $handler);
 
-        $aggregateStore = new AggregateStore(new EventSourcingAggregateStoreAdapter(
-            new AggregateFactory(TestAggregate::class),
-            $eventStore,
-            $eventBus
-        ));
+        $aggregateStore = new AggregateStore(
+            new EventSourcingAggregateStoreAdapter(
+                new AggregateFactory(TestAggregate::class),
+                $eventStore,
+                $eventBus
+            )
+        );
 
         $aggregate = TestAggregate::create('123');
         $aggregate->touch();

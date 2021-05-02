@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\EventSourcingAggregateStore;
+namespace BusFactor\Test\EventSourcingAggregateStore;
 
 use BusFactor\Aggregate\RevisionTrait;
 use BusFactor\Aggregate\SerializationTrait;

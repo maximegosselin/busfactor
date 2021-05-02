@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\ReflectionObjectSerializer;
+namespace BusFactor\Test\ReflectionObjectSerializer;
 
-use BusFactor\Serialization\ObjectSerializer;
-use BusFactor\Serialization\ReflectionObjectSerializer;
+use BusFactor\ObjectSerializer\ObjectSerializer;
+use BusFactor\ObjectSerializer\ReflectionObjectSerializer;
 use PHPUnit\Framework\TestCase;
 
 class ReflectionSerializerTest extends TestCase

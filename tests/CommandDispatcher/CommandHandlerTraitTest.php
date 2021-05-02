@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\CommandDispatcher;
+namespace BusFactor\Test\CommandDispatcher;
 
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
@@ -22,7 +22,9 @@ class CommandHandlerTraitTest extends TestCase
     public function it_throws_an_exception_if_no_handler_method_implemented(): void
     {
         $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('Function "handleTestCommand" must be implemented in class ' . FailingCommandHandler::class);
+        $this->expectExceptionMessage(
+            'Function "handleTestCommand" must be implemented in class ' . FailingCommandHandler::class
+        );
         $bus = new Dispatcher();
         $bus->registerHandler(TestCommand::class, new FailingCommandHandler());
         $bus->dispatch(new TestCommand());

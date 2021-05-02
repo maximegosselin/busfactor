@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\Extra\PdoEventStore;
+namespace BusFactor\Test\PdoEventStore;
 
 use BusFactor\Aggregate\Metadata;
 use BusFactor\Aggregate\RecordedEvent;
 use BusFactor\Aggregate\Stream;
 use BusFactor\EventStore\EventStore;
-use BusFactor\Util\PdoInterface;
-use BusFactor\Util\PdoProxy;
+use BusFactor\Pdo\PdoInterface;
+use BusFactor\PdoProxy\PdoProxy;
 use PDO;
 use PHPUnit\Framework\TestCase;
 
@@ -21,9 +21,11 @@ class PdoEventStoreTest extends TestCase
     {
         parent::setUp();
 
-        $this->pdo = new PdoProxy(function () {
-            $pdo = new PDO('sqlite::memory:');
-            $pdo->exec('CREATE TABLE event_store (
+        $this->pdo = new PdoProxy(
+            function () {
+                $pdo = new PDO('sqlite::memory:');
+                $pdo->exec(
+                    'CREATE TABLE event_store (
                 sequence INT,
                 stream_type VARCHAR,
                 stream_id VARCHAR,
@@ -33,9 +35,11 @@ class PdoEventStoreTest extends TestCase
                 event_metadata VARCHAR,
                 event_payload VARCHAR,
                 event_time VARCHAR
-            )');
-            return $pdo;
-        });
+            )'
+                );
+                return $pdo;
+            }
+        );
     }
 
     /** @test */

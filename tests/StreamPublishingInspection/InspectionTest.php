@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\Support\StreamPublishingInspection;
+namespace BusFactor\Test\StreamPublishingInspection;
 
 use BusFactor\Aggregate\Metadata;
 use BusFactor\Aggregate\RecordedEvent;
@@ -24,9 +24,9 @@ class InspectionTest extends TestCase
         $adapter = new InMemoryEventStoreAdapter();
         $adapter->append(
             (new Stream('123', 'type'))
-            ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 1))
-            ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 2))
-            ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 3))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 1))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 2))
+                ->withRecordedEvent(RecordedEvent::createNow(new TestEvent(), new Metadata(), 3))
         );
 
         (new Inspection($adapter, $eventBus))->start();

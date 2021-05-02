@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\Support\StreamPublishingInspection;
+namespace BusFactor\Test\StreamPublishingInspection;
 
 use BusFactor\Aggregate\RevisionTrait;
 use BusFactor\Aggregate\SerializationTrait;

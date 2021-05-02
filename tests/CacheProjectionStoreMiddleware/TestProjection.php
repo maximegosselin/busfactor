@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\CacheProjectionStoreMiddleware;
+namespace BusFactor\Test\CacheProjectionStoreMiddleware;
 
 use BusFactor\Projection\ProjectionInterface;
 

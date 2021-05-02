@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\Extra\PdoAggregateStore;
+namespace BusFactor\Test\PdoAggregateStore;
 
 use BusFactor\AggregateStore\AggregateStore;
-use BusFactor\Serialization\ObjectSerializer;
-use BusFactor\Serialization\SerializeFunctionObjectSerializer;
-use BusFactor\Util\PdoProxy;
+use BusFactor\ObjectSerializer\ObjectSerializer;
+use BusFactor\ObjectSerializer\SerializeFunctionObjectSerializer;
+use BusFactor\PdoProxy\PdoProxy;
 use PDO;
 use PHPUnit\Framework\TestCase;
 
@@ -16,15 +16,19 @@ class PdoAggregateStoreAdapterTest extends TestCase
     /** @test */
     public function it_persists_with_pdo(): void
     {
-        $pdo = new PdoProxy(function (): PDO {
-            $pdo = new PDO('sqlite::memory:');
-            $pdo->exec('CREATE TABLE aggregates (
+        $pdo = new PdoProxy(
+            function (): PDO {
+                $pdo = new PDO('sqlite::memory:');
+                $pdo->exec(
+                    'CREATE TABLE aggregates (
                 aggregate_id VARCHAR,
                 aggregate_type VARCHAR,
                 aggregate_payload BLOB    
-            )');
-            return $pdo;
-        });
+            )'
+                );
+                return $pdo;
+            }
+        );
         $config = (new Config())->withTable('aggregates');
         $serializer = new ObjectSerializer(new SerializeFunctionObjectSerializer());
 

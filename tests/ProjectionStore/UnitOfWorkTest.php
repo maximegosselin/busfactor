@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\ProjectionStore;
+namespace BusFactor\Test\ProjectionStore;
 
 use PHPUnit\Framework\TestCase;
 

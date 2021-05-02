@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\EventStore;
+namespace BusFactor\Test\EventStore;
 
 use BusFactor\Aggregate\Metadata;
 use BusFactor\Aggregate\RecordedEvent;
@@ -91,18 +91,18 @@ class InMemoryEventStoreTest extends TestCase
         $this->assertSame($expectedInspectedEvents, $inspector->getInspectedEvents());
     }
 
+    private function createStreamWithOneEvent(string $streamId, int $version): Stream
+    {
+        return (new Stream($streamId, 'test'))->withRecordedEvent(
+            RecordedEvent::createNow(new TestEvent(), new Metadata(), $version)
+        );
+    }
+
     private function appendEvents(EventStore $store, Stream ...$streams): EventStore
     {
         foreach ($streams as $stream) {
             $store->append($stream);
         }
         return $store;
-    }
-
-    private function createStreamWithOneEvent(string $streamId, int $version): Stream
-    {
-        return (new Stream($streamId, 'test'))->withRecordedEvent(
-            RecordedEvent::createNow(new TestEvent(), new Metadata(), $version)
-        );
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\Support\StreamEnricher;
+namespace BusFactor\Test\StreamEnricher;
 
 use BusFactor\Aggregate\Metadata;
 use BusFactor\Aggregate\RecordedEvent;

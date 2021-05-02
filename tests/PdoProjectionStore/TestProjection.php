@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\Extra\PdoProjectionStore;
+namespace BusFactor\Test\PdoProjectionStore;
 
 use BusFactor\Projection\ProjectionInterface;
 

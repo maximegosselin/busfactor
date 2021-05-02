@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\Example\Aggregate;
+namespace BusFactor\Test\Example\Aggregate;
 
-use BusFactor\EventSourcedAggregate\EventSourcedAggregateInterface;
-use BusFactor\EventSourcedAggregate\EventSourcedAggregateRootTrait;
+use BusFactor\Aggregate\EventSourcedAggregateInterface;
+use BusFactor\Aggregate\EventSourcedAggregateRootTrait;
 
 class Player implements EventSourcedAggregateInterface
 {

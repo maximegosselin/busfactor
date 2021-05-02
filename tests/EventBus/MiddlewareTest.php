@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BusFactor\EventBus;
+namespace BusFactor\Test\EventBus;
 
 use BusFactor\Aggregate\Stream;
 use PHPUnit\Framework\TestCase;
@@ -20,13 +20,16 @@ class MiddlewareTest extends TestCase
         $bus->addMiddleware(new TestMiddleware('mw3', $output));
 
         $bus->publish(new Stream('123', 'type'));
-        $this->assertEquals($output, [
-            'before mw3',
-            'before mw2',
-            'before mw1',
-            'after mw1',
-            'after mw2',
-            'after mw3',
-        ]);
+        $this->assertEquals(
+            $output,
+            [
+                'before mw3',
+                'before mw2',
+                'before mw1',
+                'after mw1',
+                'after mw2',
+                'after mw3',
+            ]
+        );
     }
 }
