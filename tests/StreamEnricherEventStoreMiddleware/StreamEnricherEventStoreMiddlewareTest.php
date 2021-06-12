@@ -20,7 +20,7 @@ class StreamEnricherEventStoreMiddlewareTest extends TestCase
     /** @test */
     public function it_enriches_stream(): void
     {
-        $mw = new class implements MiddlewareInterface {
+        $mw = new class() implements MiddlewareInterface {
             public ?Metadata $metadata = null;
 
             public function fetch(

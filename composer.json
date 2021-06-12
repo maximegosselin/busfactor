@@ -20,7 +20,7 @@
     "ext-memcached": "*",
     "ext-mongodb": "*",
     "ext-pdo_sqlite": "*",
-    "friendsofphp/php-cs-fixer": "^2",
+    "friendsofphp/php-cs-fixer": "^3",
     "mongodb/mongodb": "^1.7",
     "phpstan/phpstan": "^0.12.0",
     "phpunit/phpunit": "^9",
