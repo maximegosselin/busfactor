@@ -1,6 +1,7 @@
 # Using the Command Dispatcher
 
-This component provides a flexible implementation of the [Command Dispatcher/Bus](https://www.google.com/search?q=command+dispatcher+pattern) pattern.
+This component provides a flexible implementation of
+the [Command Dispatcher/Bus](https://www.google.com/search?q=command+dispatcher+pattern) pattern.
 
 Its purpose is to decouple application logic from the UI layer (e.g. HTTP or CLI controllers).
 
@@ -48,11 +49,11 @@ class ApproveOrderHandler implements HandlerInterface
 }
 ```
 
-If you create a distinct handler class for every command, you may end up with a lot of these. A solution is to share
-the same handler with a set of related commands.
+If you create a distinct handler class for every command, you may end up with a lot of these. A solution is to share the
+same handler with a set of related commands.
 
 The `BusFactor\CommandDispatcher\HandleCommandTrait` trait comes in handy. It passes the command object to a function
-which name starts with `handle` and ends with the command's class name. 
+which name starts with `handle` and ends with the command's class name.
 
 ```php
 use BusFactor\CommandDispatcher\HandleCommandTrait;
@@ -146,7 +147,7 @@ class ApproveOrderController implements RequestHandlerInterface
 ## Extending With Middlewares
 
 You can wrap the dispatch process with custom logic using your own middlewares classes.
- 
+
 A middleware class must implement `BusFactor\CommandDispatcher\MiddlewareInterface`.
 
 ```php
